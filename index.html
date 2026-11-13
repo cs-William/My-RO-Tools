@@ -201,6 +201,31 @@
       white-space: nowrap;
     }
 
+    .heading-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sort-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sort-controls label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #62726c;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .sort-controls select { width: auto; min-width: 150px; min-height: 36px; }
+    .sort-controls button { min-height: 36px; white-space: nowrap; }
+
     .results { overflow: hidden; }
     .table-wrap { overflow-x: auto; }
 
@@ -227,6 +252,24 @@
       font-size: 11px;
       white-space: nowrap;
     }
+
+    .sort-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      color: inherit;
+      background: transparent;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .sort-button:hover { border-color: transparent; color: #176552; background: transparent; }
+    .sort-button:focus-visible { outline: 2px solid #409b7f; outline-offset: 3px; }
+    .sort-indicator { color: #25866a; }
 
     tbody tr:hover { background: #f7fbf8; }
     td.name { min-width: 130px; font-weight: 700; color: #214f40; }
@@ -281,6 +324,67 @@
       .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .filter-panel .control:first-child { grid-column: 1 / -1; }
       .bond-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    }
+
+    @media (max-width: 760px) {
+      .results-heading { flex-wrap: wrap; }
+      .heading-actions { width: 100%; align-items: flex-start; flex-direction: column; }
+      .sort-controls { width: 100%; }
+      .sort-controls label { flex: 1; min-width: 0; }
+      .sort-controls select { width: 100%; min-width: 0; }
+      .collection-count { align-self: flex-start; }
+      .table-wrap { overflow: visible; }
+      table { display: block; min-width: 0; }
+      thead { display: none; }
+      tbody {
+        display: grid;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      tbody tr {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+          "name name"
+          "priority stars"
+          "family element"
+          "size role"
+          "skills skills"
+          "bonds bonds";
+        overflow: hidden;
+        border: 1px solid #dfe6e1;
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      tbody td {
+        display: block;
+        min-width: 0;
+        padding: 9px 11px;
+        border-bottom: 1px solid #edf1ee;
+        overflow-wrap: anywhere;
+      }
+
+      tbody td::before {
+        display: block;
+        margin-bottom: 4px;
+        color: #77857e;
+        content: attr(data-label);
+        font-size: 10px;
+        font-weight: 750;
+      }
+
+      tbody td:nth-child(1) { grid-area: priority; }
+      tbody td:nth-child(2) { grid-area: stars; }
+      tbody td:nth-child(3) { grid-area: name; font-size: 15px; }
+      tbody td:nth-child(4) { grid-area: family; }
+      tbody td:nth-child(5) { grid-area: element; }
+      tbody td:nth-child(6) { grid-area: size; }
+      tbody td:nth-child(7) { grid-area: role; }
+      tbody td:nth-child(8) { grid-area: skills; }
+      tbody td:nth-child(9) { grid-area: bonds; border-bottom: 0; }
+      tbody td.empty { grid-column: 1 / -1; }
     }
 
     @media (max-width: 520px) {
@@ -341,7 +445,24 @@
           <h2>寵物清單</h2>
           <div id="summary" class="summary" aria-live="polite"></div>
         </div>
-        <span class="collection-count">276 筆圖鑑</span>
+        <div class="heading-actions">
+          <div class="sort-controls">
+            <label for="sort-key">排序
+              <select id="sort-key">
+                <option value="stars">星數</option>
+                <option value="name">寵物名</option>
+                <option value="family">分類</option>
+                <option value="element">屬性</option>
+                <option value="size">體型</option>
+                <option value="battle_role">戰鬥定位</option>
+                <option value="skills">技能</option>
+                <option value="bonds">符合的羈絆</option>
+              </select>
+            </label>
+            <button id="sort-direction" type="button"></button>
+          </div>
+          <span class="collection-count">276 筆圖鑑</span>
+        </div>
       </div>
       <section class="results">
         <div class="table-wrap">
@@ -349,14 +470,14 @@
             <thead>
               <tr>
                 <th>優先</th>
-                <th>星數</th>
-                <th>寵物</th>
-                <th>分類</th>
-                <th>屬性</th>
-                <th>體型</th>
-                <th>戰鬥定位</th>
-                <th>技能</th>
-                <th>符合的羈絆</th>
+                <th><button class="sort-button" data-sort="stars" type="button">星數<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="name" type="button">寵物名<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="family" type="button">分類<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="element" type="button">屬性<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="size" type="button">體型<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="battle_role" type="button">戰鬥定位<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="skills" type="button">技能<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="bonds" type="button">符合的羈絆<span class="sort-indicator" aria-hidden="true"></span></button></th>
               </tr>
             </thead>
             <tbody id="results"></tbody>
@@ -373,6 +494,52 @@
     const minimumBondSelect = document.querySelector("#minimum-bonds");
     const resultsBody = document.querySelector("#results");
     const summary = document.querySelector("#summary");
+    const sortKeySelect = document.querySelector("#sort-key");
+    const sortDirectionButton = document.querySelector("#sort-direction");
+    const sortButtons = [...document.querySelectorAll(".sort-button")];
+    const sortState = { key: "stars", direction: -1 };
+    const sortValue = {
+      stars: item => item.matchedBonds.length,
+      name: item => item.pet.name,
+      family: item => item.pet.family,
+      element: item => item.pet.element,
+      size: item => item.pet.size,
+      battle_role: item => item.pet.battle_role,
+      skills: item => item.pet.skills,
+      bonds: item => item.matchedBonds.join("、")
+    };
+
+    function updateSortControls() {
+      sortKeySelect.value = sortState.key;
+      const directionLabel = sortState.key === "stars"
+        ? (sortState.direction === 1 ? "低→高" : "高→低")
+        : (sortState.direction === 1 ? "A→Z" : "Z→A");
+      sortDirectionButton.textContent = directionLabel;
+      sortDirectionButton.setAttribute("aria-label", `切換排序方向，目前為${directionLabel}`);
+
+      for (const button of sortButtons) {
+        const active = button.dataset.sort === sortState.key;
+        const header = button.closest("th");
+        button.setAttribute("aria-pressed", String(active));
+        header.setAttribute(
+          "aria-sort",
+          active ? (sortState.direction === 1 ? "ascending" : "descending") : "none"
+        );
+        button.querySelector(".sort-indicator").textContent =
+          active ? (sortState.direction === 1 ? "↑" : "↓") : "";
+      }
+    }
+
+    function setSort(key, toggleDirection) {
+      if (key === sortState.key && toggleDirection) {
+        sortState.direction *= -1;
+      } else {
+        sortState.key = key;
+        sortState.direction = key === "stars" ? -1 : 1;
+      }
+      updateSortControls();
+      renderResults();
+    }
 
     function groupForBond(bond) {
       if (bond === "近戰羈絆" || bond === "遠程羈絆") return "距離";
@@ -380,9 +547,10 @@
       return "職業";
     }
 
-    function createCell(row, value, className) {
+    function createCell(row, value, className, label) {
       const cell = document.createElement("td");
       if (className) cell.className = className;
+      if (label) cell.dataset.label = label;
       cell.textContent = value;
       row.append(cell);
       return cell;
@@ -465,21 +633,32 @@
           (!family || item.pet.family === family) &&
           (!query || item.pet.name.toLocaleLowerCase().includes(query))
         )
-        .sort((a, b) => b.matchedBonds.length - a.matchedBonds.length || a.index - b.index);
+        .sort((a, b) => {
+          const left = sortValue[sortState.key](a);
+          const right = sortValue[sortState.key](b);
+          const comparison = typeof left === "number"
+            ? left - right
+            : String(left).localeCompare(String(right), "zh-Hant", {
+              numeric: true,
+              sensitivity: "base"
+            });
+          return comparison * sortState.direction || a.index - b.index;
+        });
 
       resultsBody.replaceChildren();
       matches.forEach((item, index) => {
         const { pet, matchedBonds } = item;
         const row = document.createElement("tr");
-        createCell(row, String(index + 1));
-        createCell(row, matchedBonds.length ? "★".repeat(matchedBonds.length) : "—", "stars");
-        createCell(row, pet.name, "name");
-        createCell(row, pet.family);
-        createCell(row, pet.element);
-        createCell(row, pet.size);
-        createCell(row, pet.battle_role);
-        createCell(row, pet.skills, "skills");
+        createCell(row, String(index + 1), "", "優先");
+        createCell(row, matchedBonds.length ? "★".repeat(matchedBonds.length) : "—", "stars", "星數");
+        createCell(row, pet.name, "name", "寵物名");
+        createCell(row, pet.family, "", "分類");
+        createCell(row, pet.element, "", "屬性");
+        createCell(row, pet.size, "", "體型");
+        createCell(row, pet.battle_role, "", "戰鬥定位");
+        createCell(row, pet.skills, "skills", "技能");
         const bondCell = document.createElement("td");
+        bondCell.dataset.label = "符合的羈絆";
         for (const bond of matchedBonds) {
           const tag = document.createElement("span");
           tag.className = "tag";
@@ -516,12 +695,18 @@
     document.querySelector("#search").addEventListener("input", renderResults);
     familySelect.addEventListener("change", renderResults);
     minimumBondSelect.addEventListener("change", renderResults);
+    sortKeySelect.addEventListener("change", () => setSort(sortKeySelect.value, false));
+    sortDirectionButton.addEventListener("click", () => setSort(sortState.key, true));
+    for (const button of sortButtons) {
+      button.addEventListener("click", () => setSort(button.dataset.sort, true));
+    }
     document.querySelector("#clear").addEventListener("click", () => {
       selectedBonds.clear();
       renderBonds();
       renderResults();
     });
 
+    updateSortControls();
     renderBonds();
     renderResults();
   </script>
