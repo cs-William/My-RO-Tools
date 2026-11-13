@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《RO仙境傳說：口袋戰記》 寵物圖鑑</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+      color: #202b34;
+      background: #edf1ef;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      min-height: 86px;
+      padding: 15px clamp(18px, 4vw, 56px);
+      color: #24352e;
+      background: #fff;
+      border-bottom: 1px solid #dce5df;
+      box-shadow: 0 3px 14px #1c34270a;
+    }
+
+    .topbar h1 { margin: 0; font-size: clamp(19px, 2.2vw, 25px); letter-spacing: .01em; }
+    .server-meta, .server-item { display: flex; align-items: center; }
+    .server-meta { flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+
+    .server-item {
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid #e1e8e3;
+      border-radius: 8px;
+      background: #f7f9f7;
+      white-space: nowrap;
+    }
+
+    .server-item span { color: #77857e; font-size: 11px; }
+    .server-item strong { color: #2e463a; font-size: 13px; font-weight: 700; }
+
+    .server-badge {
+      padding: 8px 12px;
+      border: 1px solid #e9d8a8;
+      border-radius: 8px;
+      color: #75571e;
+      background: #fbf3dc;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      width: min(1560px, calc(100% - 36px));
+      margin: 16px auto 48px;
+      align-items: start;
+    }
+
+    .sidebar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel, .results, .results-heading {
+      border: 1px solid #dfe6e1;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 5px 18px #1c342708;
+    }
+
+    .panel { padding: 15px; }
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title h2, .results-heading h2 { margin: 0; font-size: 17px; }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label.control { display: grid; gap: 6px; font-size: 12px; font-weight: 700; }
+
+    input[type="search"], select {
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 10px;
+      border: 1px solid #d3ddd8;
+      border-radius: 8px;
+      color: inherit;
+      background: #fbfcfb;
+      font: inherit;
+    }
+
+    input[type="search"]:focus, select:focus {
+      outline: 2px solid #8bd1bb;
+      border-color: #409b7f;
+    }
+
+    .bond-count { color: #73817d; font-size: 11px; }
+    .bond-actions { display: flex; align-items: center; gap: 9px; }
+
+    button {
+      min-height: 31px;
+      padding: 5px 9px;
+      border: 1px solid #d3ddd8;
+      border-radius: 7px;
+      color: #36534a;
+      background: #fff;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    button:hover { border-color: #409b7f; color: #176552; background: #f2faf6; }
+
+    .bond-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .bond-group {
+      padding-top: 11px;
+      border-top: 1px solid #edf1ee;
+    }
+
+    .bond-group h3 {
+      margin: 0 0 8px;
+      color: #73817d;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .06em;
+    }
+
+    .bond-options { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .bond-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 7px;
+      border: 1px solid #e0e7e2;
+      border-radius: 7px;
+      color: #46564f;
+      background: #fff;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .bond-option:has(input:checked) {
+      border-color: #64b99c;
+      color: #155e49;
+      background: #e9f7f0;
+    }
+
+    .bond-option input { margin: 0; accent-color: #25866a; }
+
+    .content { min-width: 0; }
+
+    .results-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding: 17px 20px;
+    }
+
+    .results-heading .eyebrow { margin-bottom: 5px; }
+
+    .summary {
+      margin-top: 6px;
+      color: #75827d;
+      font-size: 12px;
+    }
+
+    .collection-count {
+      padding: 8px 11px;
+      border-radius: 8px;
+      color: #176552;
+      background: #e9f7f0;
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .results { overflow: hidden; }
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      min-width: 850px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 10px 11px;
+      border-bottom: 1px solid #edf1ee;
+      vertical-align: top;
+      font-size: 12px;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #62726c;
+      background: #f5f8f6;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    tbody tr:hover { background: #f7fbf8; }
+    td.name { min-width: 130px; font-weight: 700; color: #214f40; }
+    td.stars { color: #bd7b23; white-space: nowrap; letter-spacing: 1px; }
+    td.skills { min-width: 160px; white-space: pre-line; }
+
+    .tag {
+      display: inline-block;
+      margin: 0 4px 4px 0;
+      padding: 3px 6px;
+      border-radius: 5px;
+      color: #256c58;
+      background: #e9f6ef;
+      white-space: nowrap;
+    }
+
+    .empty { padding: 32px; color: #75827d; text-align: center; }
+
+    .offline-notice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(1560px, calc(100% - 36px));
+      margin: 14px auto 0;
+      padding: 10px 13px;
+      border: 1px solid #eadcad;
+      border-radius: 9px;
+      color: #66572c;
+      background: #fff9e9;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .offline-notice strong {
+      flex: 0 0 auto;
+      color: #795b1e;
+    }
+
+    .eyebrow {
+      margin-bottom: 4px;
+      color: #77857e;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .1em;
+    }
+
+    @media (max-width: 760px) {
+      .topbar { align-items: flex-start; flex-direction: column; gap: 12px; }
+      .server-meta { justify-content: flex-start; }
+      .workspace, .offline-notice { width: min(100% - 24px, 680px); }
+      .workspace { margin-top: 12px; }
+      .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filter-panel .control:first-child { grid-column: 1 / -1; }
+      .bond-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    }
+
+    @media (max-width: 520px) {
+      .server-meta { gap: 6px; }
+      .server-item { padding: 7px 9px; }
+      .toolbar { grid-template-columns: 1fr; }
+      .filter-panel .control:first-child { grid-column: auto; }
+      .bond-groups { grid-template-columns: 1fr; }
+      .results-heading { align-items: flex-start; padding: 14px; }
+      .offline-notice { align-items: flex-start; flex-direction: column; gap: 3px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>《RO仙境傳說：口袋戰記》 寵物圖鑑</h1>
+    <div class="server-meta" aria-label="伺服器與公會資訊">
+      <div class="server-item"><span>伺服器</span><strong>普隆德拉 1</strong></div>
+      <div class="server-item"><span>公會</span><strong>可口可樂</strong></div>
+      <span class="server-badge">御用</span>
+    </div>
+  </header>
+  <aside class="offline-notice" role="note">
+    <strong>離線資料提醒</strong>
+    <span>本圖鑑為離線整理版本，非官方資料且不會即時同步；內容可能與目前版本不同，請以官方公告及遊戲內資訊為準。</span>
+  </aside>
+  <main class="workspace">
+    <aside class="sidebar">
+      <section class="panel filter-panel" aria-label="快速篩選">
+        <div class="panel-title"><h2>快速篩選</h2></div>
+        <div class="toolbar">
+          <label class="control">搜尋寵物
+            <input id="search" type="search" placeholder="輸入寵物名稱">
+          </label>
+          <label class="control">分類
+            <select id="family"><option value="">全部分類</option></select>
+          </label>
+          <label class="control">最低羈絆數
+            <select id="minimum-bonds"></select>
+          </label>
+        </div>
+      </section>
+      <section class="panel bond-panel" aria-label="羈絆設定">
+        <div class="panel-title">
+          <h2>羈絆篩選</h2>
+          <div class="bond-actions">
+            <div id="bond-count" class="bond-count"></div>
+            <button id="clear" type="button">清除</button>
+          </div>
+        </div>
+        <div id="bond-groups" class="bond-groups"></div>
+      </section>
+    </aside>
+    <section class="content" aria-label="寵物清單">
+      <div class="results-heading">
+        <div>
+          <div class="eyebrow">圖鑑總覽</div>
+          <h2>寵物清單</h2>
+          <div id="summary" class="summary" aria-live="polite"></div>
+        </div>
+        <span class="collection-count">276 筆圖鑑</span>
+      </div>
+      <section class="results">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>優先</th>
+                <th>星數</th>
+                <th>寵物</th>
+                <th>分類</th>
+                <th>屬性</th>
+                <th>體型</th>
+                <th>戰鬥定位</th>
+                <th>技能</th>
+                <th>符合的羈絆</th>
+              </tr>
+            </thead>
+            <tbody id="results"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script>
+    const pets = [{"family": "人形系", "name": "帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "狡猾的帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "狡猾的礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "強壯的礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "發狂的諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "詛咒的諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "感染的礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "感染的礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "暴躁的傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "魔骸工頭", "element": "地屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "飛鉤索命\n輔助：炸彈投擲", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "蠱惑的帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "蠱惑的傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "巨顎蟻", "element": "地屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "突骸連摧\n輔助：棘雨貫體", "bonds": ["近戰羈絆", "地屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "幸運的巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "幸運的兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "厚實的工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "厚實的瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "毒紋蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "粘液噴射\n輔助：毒菇投射", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "狡猾的蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "重金屬蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "蝗影追噬\n輔助：蝗鳴振擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "堅硬的浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "堅硬的蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "堅硬的瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "堅硬的鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "強壯的鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "敏捷的綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "發狂的艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "發狂的克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "發狂的蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "發狂的蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "詛咒的搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "詛咒的綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "黃金蟲", "element": "火屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "突進黃金鱗粉\n輔助：怒火爆發", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "感染的兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "感染的卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "感染的蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "感染的蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "感染的鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蜂后", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "穿刺蜂針呼嘯之風\n輔助：俯衝震擊", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "憤怒的白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "暴躁的卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "暴躁的黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "龍蠅", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "迷亂洪流水炮蝕能\n輔助：渦流牽引", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "隱翅飛蟻", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "裂風穿痕\n輔助：翼旋絞滅", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蟻后", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "狂毒戰吼毒淵領域\n輔助：毒涎蔓延", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "靈巧的搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "靈巧的蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "靈巧的蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "鑽地沙蟲", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "遁地獵殺\n輔助：崩岩橫掃", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "幽靈波利", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "靈魂深淵聖靈召喚\n輔助：念力遷移", "bonds": ["遠程羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "幽靈系", "name": "狡猾的白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "狡猾的岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "堅硬的伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "詛咒的木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "詛咒的岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "感染的畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "憤怒的木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "憤怒的畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "蠱惑的白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "蠱惑的伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "鑽心瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "風彈連射\n輔助：風影瞬爆", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "七彩大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "掠空爪漩\n輔助：翔風墜滅", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "巧克猴", "element": "地屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "砸擊吃香蕉\n輔助：抓撓", "bonds": ["近戰羈絆", "地屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "吸血蝙蝠", "element": "毒屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "毒液撕咬\n輔助：幽冥毒幕", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "狂暴大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "怒熊天降\n輔助：熊突猛進", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "卷鬃山豬王", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "野豬突襲\n輔助：裂地飛踏", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "幸運的土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "幸運的小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "幸運的沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "幸運的傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "幸運的瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "厚實的沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "流浪之狼", "element": "火屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "爪擊衝擊之刃狂風振嘯\n輔助：音速利刃", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "狡猾的紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "狡猾的狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "堅硬的沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "強壯的禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "強壯的毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "強壯的藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "敏捷的白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "敏捷的溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蛋殼小雞", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "爪擊\n輔助：衝擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "發狂的野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "發狂的黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "詛咒的刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "詛咒的傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "詛咒的藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "感染的白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "感染的狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "感染的野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "感染的瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "獅鷲獸", "element": "風屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "風之領域羽刃風暴\n輔助：風行千里", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "雷極刺蝟", "element": "雷屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "雷痕疾走\n輔助：旋雷四迸", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "憤怒的大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "憤怒的狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "暴躁的大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "暴躁的小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "瘟疫毒鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "噬咬風暴\n輔助：聲波震懾", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "藍瘋兔", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "瘋衝直撞\n輔助：齙齒噬咬", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "蠱惑的土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "蠱惑的小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "蠱惑的小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "蠱惑的黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "靈巧的刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "巴風特", "element": "暗屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "追命鐮刀魔鐮亂舞\n輔助：鐮刃彎弧", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "厚實的米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "毒菇首領", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "毒液噴射\n輔助：腐臭毒霧", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "強壯的小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "強壯的蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "敏捷的親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "惡魔波利", "element": "雷屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "暗影箭暗影爆發\n輔助：暗影傾瀉", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "詛咒的曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "詛咒的蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "感染的米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "感染的毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "感染的馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "感染的蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "感染的親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "憤怒的小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "憤怒的蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "蠱惑的小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "蠱惑的小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "蠱惑的米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "靈巧的馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "植物系", "name": "巨嘴噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "暗域噬魂\n輔助：噬魂毒霧", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "兇猛魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "孢子衝撞\n輔助：菌落重擊", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "兇殘花怪", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "光合飛彈\n輔助：光能灌注", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "冰拳摩卡", "element": "水屬性", "size": "超大型", "battle_role": "戰士·魔法", "skills": "冰拳重擊\n輔助：寒冰衝擊", "bonds": ["近戰羈絆", "水屬性羈絆", "戰士羈絆"]}, {"family": "植物系", "name": "邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "厚實的草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "植物系", "name": "堅硬的摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "強壯的魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "敏捷的乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "植物系", "name": "詛咒的邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "詛咒的草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "詛咒的摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "詛咒的噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "詛咒的樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "感染的魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "憤怒的噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "憤怒的樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "暴躁的邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "蠱惑的乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "女王甲蟲", "element": "光屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輝燼三重\n輔助：光綻斥滅", "bonds": ["遠程羈絆", "光屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "天使波利", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "波利衝擊天使光環\n輔助：天使之光", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "狡猾的火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "堅硬的鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "發狂的波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "詛咒的波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "詛咒的鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "感染的火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "感染的胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "憤怒的波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "暴躁的水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "蠱惑的水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "蠱惑的波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "靈巧的胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "精靈系", "name": "巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "血蝴蝶", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "蝶影蜜雨\n輔助：粉蝶漣漪", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "泥怪", "element": "水屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "落石土石流\n輔助：泥潭爆發", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "敏捷的巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "森林守衛", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "擲苗飛襲\n輔助：根汲震域", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "精靈系", "name": "發狂的泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "詛咒的泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "詛咒的森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "精靈系", "name": "感染的長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "熔岩波利", "element": "火屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "熔岩陷阱\n輔助：熔岩噴發", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "暴躁的沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "暴躁的長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "蠱惑的巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "蠱惑的沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "靈巧的森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}];
+    const selectedBonds = new Set();
+    const bondGroups = document.querySelector("#bond-groups");
+    const familySelect = document.querySelector("#family");
+    const minimumBondSelect = document.querySelector("#minimum-bonds");
+    const resultsBody = document.querySelector("#results");
+    const summary = document.querySelector("#summary");
+
+    function groupForBond(bond) {
+      if (bond === "近戰羈絆" || bond === "遠程羈絆") return "距離";
+      if (bond.endsWith("屬性羈絆")) return "屬性";
+      return "職業";
+    }
+
+    function createCell(row, value, className) {
+      const cell = document.createElement("td");
+      if (className) cell.className = className;
+      cell.textContent = value;
+      row.append(cell);
+      return cell;
+    }
+
+    function updateMinimumOptions() {
+      const previous = Number(minimumBondSelect.value);
+      const max = pets.reduce(
+        (highest, pet) => Math.max(
+          highest,
+          pet.bonds.filter(bond => selectedBonds.has(bond)).length
+        ),
+        0
+      );
+      minimumBondSelect.replaceChildren();
+      for (let count = 0; count <= max; count += 1) {
+        const option = document.createElement("option");
+        option.value = String(count);
+        option.textContent = count === 0 ? "不限制" : `至少 ${count} 項`;
+        minimumBondSelect.append(option);
+      }
+      minimumBondSelect.value = String(Math.min(previous, max));
+    }
+
+    function renderBonds() {
+      const groups = new Map([
+        ["距離", []],
+        ["屬性", []],
+        ["職業", []]
+      ]);
+      const allBonds = [...new Set(pets.flatMap(pet => pet.bonds))];
+      for (const bond of allBonds) groups.get(groupForBond(bond)).push(bond);
+      bondGroups.replaceChildren();
+
+      for (const [groupName, bonds] of groups) {
+        const section = document.createElement("section");
+        section.className = "bond-group";
+        const heading = document.createElement("h3");
+        heading.textContent = groupName;
+        const options = document.createElement("div");
+        options.className = "bond-options";
+        for (const bond of bonds) {
+          const label = document.createElement("label");
+          label.className = "bond-option";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.value = bond;
+          checkbox.checked = selectedBonds.has(bond);
+          checkbox.addEventListener("change", () => {
+            if (checkbox.checked) selectedBonds.add(bond);
+            else selectedBonds.delete(bond);
+            updateMinimumOptions();
+            renderResults();
+          });
+          label.append(checkbox, document.createTextNode(bond));
+          options.append(label);
+        }
+        section.append(heading, options);
+        bondGroups.append(section);
+      }
+
+      document.querySelector("#bond-count").textContent =
+        `已選 ${selectedBonds.size} 項羈絆；每隻寵物的星數依符合項目計算。`;
+      updateMinimumOptions();
+    }
+
+    function renderResults() {
+      const query = document.querySelector("#search").value.trim().toLocaleLowerCase();
+      const family = familySelect.value;
+      const minimum = Number(minimumBondSelect.value);
+      const selected = [...selectedBonds];
+      const matches = pets
+        .map((pet, index) => ({
+          pet,
+          index,
+          matchedBonds: pet.bonds.filter(bond => selectedBonds.has(bond))
+        }))
+        .filter(item =>
+          item.matchedBonds.length >= minimum &&
+          (!family || item.pet.family === family) &&
+          (!query || item.pet.name.toLocaleLowerCase().includes(query))
+        )
+        .sort((a, b) => b.matchedBonds.length - a.matchedBonds.length || a.index - b.index);
+
+      resultsBody.replaceChildren();
+      matches.forEach((item, index) => {
+        const { pet, matchedBonds } = item;
+        const row = document.createElement("tr");
+        createCell(row, String(index + 1));
+        createCell(row, matchedBonds.length ? "★".repeat(matchedBonds.length) : "—", "stars");
+        createCell(row, pet.name, "name");
+        createCell(row, pet.family);
+        createCell(row, pet.element);
+        createCell(row, pet.size);
+        createCell(row, pet.battle_role);
+        createCell(row, pet.skills, "skills");
+        const bondCell = document.createElement("td");
+        for (const bond of matchedBonds) {
+          const tag = document.createElement("span");
+          tag.className = "tag";
+          tag.textContent = bond;
+          bondCell.append(tag);
+        }
+        row.append(bondCell);
+        resultsBody.append(row);
+      });
+
+      if (!matches.length) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.className = "empty";
+        cell.colSpan = 9;
+        cell.textContent = "沒有符合條件的寵物，請調整羈絆或星數。";
+        row.append(cell);
+        resultsBody.append(row);
+      }
+
+      summary.textContent =
+        `符合 ${matches.length} / ${pets.length} 隻` +
+        (selected.length ? ` · 依 ${selected.length} 項已選羈絆計星` : " · 尚未選擇羈絆");
+    }
+
+    const families = [...new Set(pets.map(pet => pet.family))];
+    for (const family of families) {
+      const option = document.createElement("option");
+      option.value = family;
+      option.textContent = family;
+      familySelect.append(option);
+    }
+
+    document.querySelector("#search").addEventListener("input", renderResults);
+    familySelect.addEventListener("change", renderResults);
+    minimumBondSelect.addEventListener("change", renderResults);
+    document.querySelector("#clear").addEventListener("click", () => {
+      selectedBonds.clear();
+      renderBonds();
+      renderResults();
+    });
+
+    renderBonds();
+    renderResults();
+  </script>
+</body>
+</html>
