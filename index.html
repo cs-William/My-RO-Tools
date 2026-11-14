@@ -41,7 +41,7 @@
       white-space: nowrap;
     }
 
-    .server-item span { color: #77857e; font-size: 11px; }
+    .server-item span { color: #77857e; font-size: 12px; }
     .server-item strong { color: #2e463a; font-size: 13px; font-weight: 700; }
 
     .server-badge {
@@ -89,12 +89,6 @@
 
     .panel-title h2, .results-heading h2 { margin: 0; font-size: 17px; }
 
-    .toolbar {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     label.control { display: grid; gap: 6px; font-size: 12px; font-weight: 700; }
 
     input[type="search"], select {
@@ -113,9 +107,6 @@
       border-color: #409b7f;
     }
 
-    .bond-count { color: #73817d; font-size: 11px; }
-    .bond-actions { display: flex; align-items: center; gap: 9px; }
-
     button {
       min-height: 31px;
       padding: 5px 9px;
@@ -130,12 +121,6 @@
 
     button:hover { border-color: #409b7f; color: #176552; background: #f2faf6; }
 
-    .bond-groups {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
     .bond-group {
       padding-top: 11px;
       border-top: 1px solid #edf1ee;
@@ -144,7 +129,7 @@
     .bond-group h3 {
       margin: 0 0 8px;
       color: #73817d;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 750;
       letter-spacing: .06em;
     }
@@ -160,7 +145,7 @@
       border-radius: 7px;
       color: #46564f;
       background: #fff;
-      font-size: 11px;
+      font-size: 12px;
       cursor: pointer;
     }
 
@@ -177,54 +162,18 @@
     .results-heading {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 16px;
       margin-bottom: 14px;
       padding: 17px 20px;
     }
 
-    .results-heading .eyebrow { margin-bottom: 5px; }
-
     .summary {
-      margin-top: 6px;
+      margin: 0;
       color: #75827d;
       font-size: 12px;
-    }
-
-    .collection-count {
-      padding: 8px 11px;
-      border-radius: 8px;
-      color: #176552;
-      background: #e9f7f0;
-      font-size: 12px;
-      font-weight: 750;
       white-space: nowrap;
     }
-
-    .heading-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .sort-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .sort-controls label {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: #62726c;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .sort-controls select { width: auto; min-width: 150px; min-height: 36px; }
-    .sort-controls button { min-height: 36px; white-space: nowrap; }
 
     .results { overflow: hidden; }
     .table-wrap { overflow-x: auto; }
@@ -249,7 +198,7 @@
       z-index: 1;
       color: #62726c;
       background: #f5f8f6;
-      font-size: 11px;
+      font-size: 12px;
       white-space: nowrap;
     }
 
@@ -273,9 +222,6 @@
 
     tbody tr:hover { background: #f7fbf8; }
     td.name { min-width: 130px; font-weight: 700; color: #214f40; }
-    td.stars { color: #bd7b23; white-space: nowrap; letter-spacing: 1px; }
-    td.skills { min-width: 160px; white-space: pre-line; }
-
     .tag {
       display: inline-block;
       margin: 0 4px 4px 0;
@@ -307,32 +253,352 @@
       flex: 0 0 auto;
       color: #795b1e;
     }
+    .last-updated {
+      flex: 0 0 auto;
+      margin-left: auto;
+      color: #91a6c5;
+      font-size: 12px;
+      white-space: nowrap;
+    }
 
+    :root {
+      color-scheme: dark;
+      color: #e8f0ff;
+      background: #070b18;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 12% 0%, #16306188, transparent 38rem),
+        radial-gradient(ellipse at 88% 15%, #36195866, transparent 34rem),
+        linear-gradient(155deg, #080d1b, #0b1021 58%, #080c18);
+    }
+
+    .topbar {
+      color: #edf4ff;
+      background: #0a1020cc;
+      border-bottom-color: #8bb9ff2b;
+      box-shadow: 0 8px 32px #0005;
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar h1 { letter-spacing: .025em; }
+    .server-item {
+      border-color: #7395d633;
+      background: #14213b99;
+    }
+    .server-item span, .summary { color: #9cacc9; }
+    .server-item strong { color: #dceaff; }
+    .server-badge {
+      border-color: #6edcf655;
+      color: #92ecff;
+      background: #142c41aa;
+    }
+
+    .workspace { width: min(1740px, calc(100% - 36px)); }
+    .panel, .results, .results-heading {
+      border: 1px solid #8daeff26;
+      border-radius: 16px;
+      background: #10182bd9;
+      box-shadow: 0 18px 48px #02061370, inset 0 1px #ffffff08;
+      backdrop-filter: blur(20px);
+    }
+    .panel { padding: clamp(16px, 2vw, 24px); }
+    .panel-title { margin-bottom: 18px; }
+    .panel-title h2, .results-heading h2 { color: #f0f5ff; }
+    label.control { color: #becbe3; }
+    input[type="search"], select {
+      border-color: #8daeff35;
+      color: #eef4ff;
+      background: #090f20;
+    }
+    input[type="search"]::placeholder { color: #687895; }
+    input[type="search"]:focus, select:focus {
+      outline-color: #58d7ff;
+      border-color: #58d7ff;
+    }
+    select option { color: #eef4ff; background: #10182b; }
+
+    button {
+      border-color: #8daeff38;
+      color: #d6e5ff;
+      background: #182440;
+      transition: border-color .2s ease, color .2s ease, background .2s ease, transform .2s ease;
+    }
+    button:hover {
+      border-color: #6fe4ff9c;
+      color: #a4efff;
+      background: #1b3150;
+      transform: translateY(-1px);
+    }
+
+    .filter-panel { display: grid; gap: 18px; }
+    .filter-panel .panel-title { margin-bottom: 0; }
+    .filter-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .filter-stack { display: grid; align-content: stretch; gap: 12px; }
+    .filter-group, .bond-group {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid #91adf022;
+      border-radius: 12px;
+      background: #0b1325a6;
+    }
+    .filter-group h3, .bond-group h3 {
+      margin: 0 0 11px;
+      color: #8fe6ff;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+    .group-hint, .filter-section-title span {
+      margin: -4px 0 12px;
+      color: #8798b8;
+      font-size: 12px;
+    }
+    .checkbox-options, .bond-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-checkbox, .bond-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid #8daeff30;
+      border-radius: 9px;
+      color: #c1cde3;
+      background: #121d34;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .filter-checkbox:hover, .bond-option:hover, .pair-option:hover {
+      border-color: #6fe4ff88;
+      transform: translateY(-1px);
+    }
+    .filter-checkbox:has(input:checked), .bond-option:has(input:checked) {
+      border-color: #59dcff9c;
+      color: #e7faff;
+      background: #123048;
+      box-shadow: inset 0 0 18px #3dc9ff14;
+    }
+    .filter-checkbox input, .bond-option input, .pair-option input {
+      margin: 0;
+      accent-color: #54d9ff;
+    }
+    .pair-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .pair-option {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 66px;
+      padding: 8px;
+      border: 1px solid #8daeff30;
+      border-radius: 10px;
+      color: #e2ecff;
+      background: linear-gradient(145deg, #15233e, #10182a);
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .pair-option:has(input:checked) {
+      border-color: #62ddffad;
+      background: linear-gradient(145deg, #12354b, #15213a);
+      box-shadow: 0 0 22px #48cfff16;
+    }
+    .pair-copy { display: grid; gap: 3px; }
+    .pair-job { color: #a9b8d5; font-size: 13px; }
+    .pair-role { color: #eff7ff; font-size: 13px; font-weight: 750; }
+    .pair-arrow { color: #60dfff; font-size: 12px; }
+    .pair-job, .pair-role { white-space: nowrap; }
+    .filter-section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .filter-section-title h3 {
+      margin: 0;
+      color: #d8e6ff;
+      font-size: 14px;
+    }
+    .filter-section-title span { margin: 0; }
+    .bond-group { padding: 13px; }
+    .bond-group h3 { margin-bottom: 10px; color: #9daed0; }
+    .checkbox-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .type-options { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+    .checkbox-grid .filter-checkbox, .checkbox-grid .bond-option {
+      justify-content: flex-start;
+      min-width: 0;
+      white-space: nowrap;
+    }
+    .bond-group .checkbox-grid .bond-option { min-width: 0; }
+
+    .results-heading { margin-bottom: 14px; }
+    .summary { color: #c3d5ef; }
+    .collection-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-control { width: 220px; flex: 0 1 220px; min-width: 160px; }
+    .search-control input { width: 100%; min-height: 40px; }
+    .minimum-bond-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #becbe3;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .minimum-bond-control select { width: 136px; min-height: 40px; }
+    .minimum-bond-control select:disabled { opacity: .55; cursor: not-allowed; }
+    .mobile-sort-control { display: none; }
+    .clear-filters { min-height: 40px; padding-inline: 12px; }
+    .results { border-radius: 16px; }
+    table { min-width: 900px; }
+    th, td { border-bottom-color: #8daeff18; }
+    th {
+      color: #aab9d5;
+      background: #121d34;
+      font-size: 12px;
+    }
+    .sort-button { color: inherit; }
+    .sort-button:hover { color: #8feaff; }
+    .sort-button:focus-visible { outline-color: #58d7ff; }
+    .sort-indicator { color: #64e3ff; }
+    tbody tr { transition: background .2s ease; }
+    tbody tr:hover { background: #1a2a46; }
+    td.name { color: #e8f4ff; }
+    .tag {
+      border: 1px solid #4ed9ff30;
+      color: #a8eaff;
+      background: #122a40;
+    }
+    .empty { color: #9cacc9; }
+    .offline-notice {
+      border-color: #65bfff35;
+      color: #b7c8e4;
+      background: #101a2bd9;
+      box-shadow: 0 10px 32px #02061355;
+      backdrop-filter: blur(16px);
+    }
+    .offline-notice strong { color: #83e6ff; }
     .eyebrow {
       margin-bottom: 4px;
-      color: #77857e;
-      font-size: 10px;
+      color: #7da8db;
+      font-size: 12px;
       font-weight: 750;
       letter-spacing: .1em;
     }
 
     @media (max-width: 760px) {
+      .workspace, .offline-notice { width: min(100% - 24px, 680px); }
+      .filter-layout { grid-template-columns: 1fr; }
+      .results-heading { align-items: flex-start; }
+      .collection-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        width: 100%;
+        justify-content: initial;
+        gap: 8px;
+      }
+      .search-control {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        min-width: 0;
+      }
+      .minimum-bond-control {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        min-width: 0;
+      }
+      .minimum-bond-control select {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        height: 40px;
+      }
+      .summary { grid-column: 2; grid-row: 2; justify-self: end; }
+      .mobile-sort-control {
+        display: flex;
+        grid-column: 1;
+        grid-row: 3;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+        color: #becbe3;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .mobile-sort-control select {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        height: 40px;
+      }
+      .clear-filters { grid-column: 2; grid-row: 3; justify-self: end; }
+      table { min-width: 0; }
+      tbody tr {
+        border-color: #8daeff30;
+        background: #10182bd9;
+      }
+      tbody td { border-bottom-color: #8daeff18; }
+      tbody td::before { color: #8193b5; }
+    }
+    @media (max-width: 520px) {
+      .workspace { width: calc(100% - 20px); margin-top: 10px; }
+      .panel { padding: 14px; }
+      .panel-title { align-items: flex-start; }
+      .pair-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .checkbox-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .type-group { overflow: visible; }
+      .type-options {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        overflow: visible;
+        padding: 0;
+      }
+      .type-options .filter-checkbox { gap: 5px; padding: 6px; }
+      .filter-section-title { align-items: flex-start; flex-direction: column; }
+      .results-heading { padding: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (max-width: 760px) {
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; }
       .server-meta { justify-content: flex-start; }
       .workspace, .offline-notice { width: min(100% - 24px, 680px); }
       .workspace { margin-top: 12px; }
-      .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .filter-panel .control:first-child { grid-column: 1 / -1; }
-      .bond-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     }
 
     @media (max-width: 760px) {
       .results-heading { flex-wrap: wrap; }
-      .heading-actions { width: 100%; align-items: flex-start; flex-direction: column; }
-      .sort-controls { width: 100%; }
-      .sort-controls label { flex: 1; min-width: 0; }
-      .sort-controls select { width: 100%; min-width: 0; }
-      .collection-count { align-self: flex-start; }
       .table-wrap { overflow: visible; }
       table { display: block; min-width: 0; }
       thead { display: none; }
@@ -347,10 +613,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-areas:
           "name name"
-          "priority stars"
-          "family element"
-          "size role"
-          "skills skills"
+          "tier card_type"
+          "family size"
+          "role monster"
+          "job job"
           "bonds bonds";
         overflow: hidden;
         border: 1px solid #dfe6e1;
@@ -371,18 +637,18 @@
         margin-bottom: 4px;
         color: #77857e;
         content: attr(data-label);
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 750;
       }
 
-      tbody td:nth-child(1) { grid-area: priority; }
-      tbody td:nth-child(2) { grid-area: stars; }
+      tbody td:nth-child(1) { grid-area: tier; }
+      tbody td:nth-child(2) { grid-area: card_type; }
       tbody td:nth-child(3) { grid-area: name; font-size: 15px; }
       tbody td:nth-child(4) { grid-area: family; }
-      tbody td:nth-child(5) { grid-area: element; }
-      tbody td:nth-child(6) { grid-area: size; }
-      tbody td:nth-child(7) { grid-area: role; }
-      tbody td:nth-child(8) { grid-area: skills; }
+      tbody td:nth-child(5) { grid-area: size; }
+      tbody td:nth-child(6) { grid-area: role; }
+      tbody td:nth-child(7) { grid-area: job; }
+      tbody td:nth-child(8) { grid-area: monster; }
       tbody td:nth-child(9) { grid-area: bonds; border-bottom: 0; }
       tbody td.empty { grid-column: 1 / -1; }
     }
@@ -390,11 +656,38 @@
     @media (max-width: 520px) {
       .server-meta { gap: 6px; }
       .server-item { padding: 7px 9px; }
-      .toolbar { grid-template-columns: 1fr; }
-      .filter-panel .control:first-child { grid-column: auto; }
-      .bond-groups { grid-template-columns: 1fr; }
       .results-heading { align-items: flex-start; padding: 14px; }
       .offline-notice { align-items: flex-start; flex-direction: column; gap: 3px; }
+    }
+    @media (max-width: 760px) {
+      tbody tr {
+        border-color: #8daeff30;
+        background: #10182bd9;
+      }
+      tbody td { border-bottom-color: #8daeff18; }
+      tbody td::before { color: #8193b5; font-size: 12px; }
+      tbody td.bond-cell::before { display: none; }
+      tbody td.bond-cell:empty { display: none; }
+    }
+    @media (max-width: 520px) {
+      .filter-layout { grid-template-columns: 1fr; }
+      .checkbox-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .results-heading { align-items: flex-start; padding: 14px; }
+      .collection-actions { width: 100%; justify-content: flex-start; }
+      .last-updated { align-self: flex-end; margin-left: 0; }
+    }
+    @media (max-width: 360px) {
+      .collection-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 100px); }
+      .search-control { grid-column: 1; grid-row: 1; }
+      .minimum-bond-control { grid-column: 1; grid-row: 2; }
+      .summary {
+        grid-column: 2;
+        grid-row: 2;
+        max-width: 100px;
+        text-align: right;
+      }
+      .mobile-sort-control { grid-column: 1; grid-row: 3; }
+      .clear-filters { grid-column: 2; grid-row: 3; }
     }
   </style>
 </head>
@@ -410,58 +703,67 @@
   <aside class="offline-notice" role="note">
     <strong>離線資料提醒</strong>
     <span>本圖鑑為離線整理版本，非官方資料且不會即時同步；內容可能與目前版本不同，請以官方公告及遊戲內資訊為準。</span>
+    <time id="last-updated" class="last-updated" datetime="2026-11-15T01:08:29+08:00">最後製作更新：2026/11/15 01:08:29</time>
   </aside>
   <main class="workspace">
     <aside class="sidebar">
-      <section class="panel filter-panel" aria-label="快速篩選">
-        <div class="panel-title"><h2>快速篩選</h2></div>
-        <div class="toolbar">
-          <label class="control">搜尋寵物
-            <input id="search" type="search" placeholder="輸入寵物名稱">
-          </label>
-          <label class="control">分類
-            <select id="family"><option value="">全部分類</option></select>
-          </label>
-          <label class="control">最低羈絆數
-            <select id="minimum-bonds"></select>
-          </label>
-        </div>
-      </section>
-      <section class="panel bond-panel" aria-label="羈絆設定">
-        <div class="panel-title">
-          <h2>羈絆篩選</h2>
-          <div class="bond-actions">
-            <div id="bond-count" class="bond-count"></div>
-            <button id="clear" type="button">清除</button>
+      <section class="panel filter-panel" aria-label="篩選條件">
+        <section class="filter-group type-group">
+          <h3>類型</h3>
+          <div id="family-options" class="checkbox-options checkbox-grid type-options"></div>
+        </section>
+        <div class="filter-layout">
+          <div class="filter-stack">
+            <section class="filter-group">
+              <h3>屬性羈絆</h3>
+              <div id="element-options" class="bond-options checkbox-grid"></div>
+            </section>
+            <section class="bond-group">
+              <h3>距離羈絆</h3>
+              <div id="distance-options" class="bond-options"></div>
+            </section>
           </div>
+          <section class="filter-group role-pair-group">
+            <h3>職業 × 戰鬥定位</h3>
+            <p class="group-hint">勾選配對同步篩選；同時視為職業羈絆</p>
+            <div id="role-pairs" class="pair-options"></div>
+          </section>
         </div>
-        <div id="bond-groups" class="bond-groups"></div>
       </section>
     </aside>
-    <section class="content" aria-label="寵物清單">
+    <section class="content" aria-label="寵物結果">
       <div class="results-heading">
-        <div>
-          <div class="eyebrow">圖鑑總覽</div>
-          <h2>寵物清單</h2>
+        <div class="collection-actions">
+          <label class="search-control">
+            <input id="search" type="search" aria-label="依寵物名稱搜尋" placeholder="寵物名稱搜尋">
+          </label>
+          <label class="minimum-bond-control">羈絆
+            <select id="minimum-bonds"></select>
+          </label>
+          <label class="mobile-sort-control">排序
+            <select id="mobile-sort">
+              <option value="name:1">寵物名（升冪）</option>
+              <option value="name:-1">寵物名（降冪）</option>
+              <option value="tier:-1">T級（T1 → T4）</option>
+              <option value="tier:1">T級（T4 → T1）</option>
+              <option value="card_type:-1">卡別（UR → N）</option>
+              <option value="card_type:1">卡別（N → UR）</option>
+              <option value="family:1">類型（升冪）</option>
+              <option value="family:-1">類型（降冪）</option>
+              <option value="size:1">體型（升冪）</option>
+              <option value="size:-1">體型（降冪）</option>
+              <option value="battle_role:1">戰鬥定位（升冪）</option>
+              <option value="battle_role:-1">戰鬥定位（降冪）</option>
+              <option value="job:1">職業（升冪）</option>
+              <option value="job:-1">職業（降冪）</option>
+              <option value="monster:-1">魔物（MVP → Normal）</option>
+              <option value="monster:1">魔物（Normal → MVP）</option>
+              <option value="bonds:-1">符合的羈絆（3 → 0）</option>
+              <option value="bonds:1">符合的羈絆（0 → 3）</option>
+            </select>
+          </label>
           <div id="summary" class="summary" aria-live="polite"></div>
-        </div>
-        <div class="heading-actions">
-          <div class="sort-controls">
-            <label for="sort-key">排序
-              <select id="sort-key">
-                <option value="stars">星數</option>
-                <option value="name">寵物名</option>
-                <option value="family">分類</option>
-                <option value="element">屬性</option>
-                <option value="size">體型</option>
-                <option value="battle_role">戰鬥定位</option>
-                <option value="skills">技能</option>
-                <option value="bonds">符合的羈絆</option>
-              </select>
-            </label>
-            <button id="sort-direction" type="button"></button>
-          </div>
-          <span class="collection-count">276 筆圖鑑</span>
+          <button id="clear" class="clear-filters" type="button">清除篩選</button>
         </div>
       </div>
       <section class="results">
@@ -469,14 +771,14 @@
           <table>
             <thead>
               <tr>
-                <th>優先</th>
-                <th><button class="sort-button" data-sort="stars" type="button">星數<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="tier" type="button">T級<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="card_type" type="button">卡別<span class="sort-indicator" aria-hidden="true"></span></button></th>
                 <th><button class="sort-button" data-sort="name" type="button">寵物名<span class="sort-indicator" aria-hidden="true"></span></button></th>
-                <th><button class="sort-button" data-sort="family" type="button">分類<span class="sort-indicator" aria-hidden="true"></span></button></th>
-                <th><button class="sort-button" data-sort="element" type="button">屬性<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="family" type="button">類型<span class="sort-indicator" aria-hidden="true"></span></button></th>
                 <th><button class="sort-button" data-sort="size" type="button">體型<span class="sort-indicator" aria-hidden="true"></span></button></th>
                 <th><button class="sort-button" data-sort="battle_role" type="button">戰鬥定位<span class="sort-indicator" aria-hidden="true"></span></button></th>
-                <th><button class="sort-button" data-sort="skills" type="button">技能<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="job" type="button">職業<span class="sort-indicator" aria-hidden="true"></span></button></th>
+                <th><button class="sort-button" data-sort="monster" type="button">魔物<span class="sort-indicator" aria-hidden="true"></span></button></th>
                 <th><button class="sort-button" data-sort="bonds" type="button">符合的羈絆<span class="sort-indicator" aria-hidden="true"></span></button></th>
               </tr>
             </thead>
@@ -487,40 +789,58 @@
     </section>
   </main>
   <script>
-    const pets = [{"family": "人形系", "name": "帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "狡猾的帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "狡猾的礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "強壯的礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "發狂的諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "詛咒的諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "感染的礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "感染的礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "暴躁的傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "諾可伊", "element": "暗屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "礦工工頭", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "人形系", "name": "礦工魔", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "魔骸工頭", "element": "地屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "飛鉤索命\n輔助：炸彈投擲", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "人形系", "name": "蠱惑的帕莎納", "element": "毒屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "人形系", "name": "蠱惑的傑洛米", "element": "暗屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "巨顎蟻", "element": "地屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "突骸連摧\n輔助：棘雨貫體", "bonds": ["近戰羈絆", "地屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "幸運的巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "幸運的兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "厚實的工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "厚實的瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "毒紋蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "粘液噴射\n輔助：毒菇投射", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "狡猾的蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "重金屬蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "蝗影追噬\n輔助：蝗鳴振擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "堅硬的浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "堅硬的蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "堅硬的瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "堅硬的鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "強壯的鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "敏捷的綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "發狂的艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "發狂的克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "發狂的蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "發狂的蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的巨象甲蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "詛咒的搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "詛咒的綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "詛咒的蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "黃金蟲", "element": "火屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "突進黃金鱗粉\n輔助：怒火爆發", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "感染的兵蟻", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "感染的卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "感染的蚯蚓", "element": "地屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "感染的蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "感染的鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蜂后", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "穿刺蜂針呼嘯之風\n輔助：俯衝震擊", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "綠棉蟲", "element": "地屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "地屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "蒼蠅", "element": "水屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "憤怒的白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "暴躁的卷甲蟲", "element": "地屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "暴躁的黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蝸牛", "element": "水屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "龍蠅", "element": "水屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "迷亂洪流水炮蝕能\n輔助：渦流牽引", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "昆蟲系", "name": "鍬形蟲", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "隱翅飛蟻", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "裂風穿痕\n輔助：翼旋絞滅", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蟻后", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "狂毒戰吼毒淵領域\n輔助：毒涎蔓延", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的工蟻", "element": "地屬性", "size": "小型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的白蟻", "element": "水屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的艾吉歐蜈蚣", "element": "風屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的克瑞米", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的浮勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的黑蟻", "element": "火屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的瑪勒盜蟲", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "昆蟲系", "name": "蠱惑的鐵蠍", "element": "毒屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "靈巧的搖滾蝗蟲", "element": "雷屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "雷屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "靈巧的蜂兵", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "昆蟲系", "name": "靈巧的蠍子", "element": "毒屬性", "size": "小型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "毒屬性羈絆", "牧師羈絆"]}, {"family": "昆蟲系", "name": "鑽地沙蟲", "element": "地屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "遁地獵殺\n輔助：崩岩橫掃", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "幽靈波利", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "靈魂深淵聖靈召喚\n輔助：念力遷移", "bonds": ["遠程羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "幽靈系", "name": "狡猾的白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "狡猾的岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "堅硬的伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "詛咒的木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "詛咒的岩石龜", "element": "暗屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "感染的畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "憤怒的木乃伊", "element": "暗屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "暗屬性羈絆", "坦克羈絆"]}, {"family": "幽靈系", "name": "憤怒的畢萊特", "element": "雷屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "蠱惑的白幽靈", "element": "雷屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "幽靈系", "name": "蠱惑的伊特瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "幽靈系", "name": "鑽心瓢蟲", "element": "風屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "風彈連射\n輔助：風影瞬爆", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "七彩大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "掠空爪漩\n輔助：翔風墜滅", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "巧克猴", "element": "地屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "砸擊吃香蕉\n輔助：抓撓", "bonds": ["近戰羈絆", "地屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "吸血蝙蝠", "element": "毒屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "毒液撕咬\n輔助：幽冥毒幕", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "狂暴大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "怒熊天降\n輔助：熊突猛進", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "卷鬃山豬王", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "野豬突襲\n輔助：裂地飛踏", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "幸運的土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "幸運的小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "幸運的沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "幸運的傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "幸運的瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "厚實的沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "流浪之狼", "element": "火屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "爪擊衝擊之刃狂風振嘯\n輔助：音速利刃", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "狡猾的紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "狡猾的狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "堅硬的沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "強壯的禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "強壯的毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "強壯的藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "敏捷的白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "敏捷的溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蛋殼小雞", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "爪擊\n輔助：衝擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "發狂的野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "發狂的黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "詛咒的刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的毒蛇", "element": "毒屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "毒屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "詛咒的傘蜥", "element": "光屬性", "size": "大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "詛咒的溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "詛咒的藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "感染的白鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的禿鷹", "element": "風屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "感染的狸貓", "element": "火屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "火屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "感染的狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "感染的野豬", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "感染的瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "溜溜猴", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "獅鷲獸", "element": "風屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "風之領域羽刃風暴\n輔助：風行千里", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "雷極刺蝟", "element": "雷屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "雷痕疾走\n輔助：旋雷四迸", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "瘋兔", "element": "風屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "憤怒的大嘴鳥", "element": "風屬性", "size": "大型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "風屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "憤怒的狼", "element": "火屬性", "size": "中型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "暴躁的大腳熊", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "暴躁的小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "瘟疫毒鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "噬咬風暴\n輔助：聲波震懾", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "藍鼠", "element": "水屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "水屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "藍瘋兔", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "瘋衝直撞\n輔助：齙齒噬咬", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "蠱惑的土撥鼠", "element": "地屬性", "size": "小型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "動物系", "name": "蠱惑的小野豬", "element": "水屬性", "size": "小型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "水屬性羈絆", "坦克羈絆"]}, {"family": "動物系", "name": "蠱惑的小雞", "element": "火屬性", "size": "小型", "battle_role": "戰士·物理", "skills": "輔助：震盪一擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠之狼", "element": "火屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠巨蜥", "element": "水屬性", "size": "超大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "動物系", "name": "蠱惑的沙漠幼狼", "element": "火屬性", "size": "小型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "火屬性羈絆", "戰士羈絆"]}, {"family": "動物系", "name": "蠱惑的紅蝙蝠", "element": "火屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "動物系", "name": "蠱惑的黑蛇", "element": "毒屬性", "size": "中型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "刺客羈絆"]}, {"family": "動物系", "name": "靈巧的刺蝟", "element": "地屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "地屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "巴風特", "element": "暗屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "追命鐮刀魔鐮亂舞\n輔助：鐮刃彎弧", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "厚實的米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "厚實的曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "毒菇首領", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "毒液噴射\n輔助：腐臭毒霧", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "強壯的小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "強壯的蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "敏捷的親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "惡魔波利", "element": "雷屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "暗影箭暗影爆發\n輔助：暗影傾瀉", "bonds": ["近戰羈絆", "雷屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "詛咒的曼陀羅魔花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "惡魔系", "name": "詛咒的蛇女伊絲", "element": "毒屬性", "size": "中型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "毒屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "感染的米洛斯", "element": "火屬性", "size": "超大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "感染的毒魔菇", "element": "毒屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "毒屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "感染的馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "感染的蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "感染的親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "憤怒的小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "憤怒的蛇女祭司", "element": "暗屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "暗屬性羈絆", "法師羈絆"]}, {"family": "惡魔系", "name": "親衛巨蟻", "element": "火屬性", "size": "大型", "battle_role": "坦克·物理", "skills": "輔助：物防加固", "bonds": ["近戰羈絆", "火屬性羈絆", "坦克羈絆"]}, {"family": "惡魔系", "name": "蠱惑的小巴風特", "element": "暗屬性", "size": "小型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "蠱惑的小惡魔", "element": "雷屬性", "size": "小型", "battle_role": "刺客·魔法", "skills": "輔助：魔力追擊", "bonds": ["近戰羈絆", "雷屬性羈絆", "刺客羈絆"]}, {"family": "惡魔系", "name": "蠱惑的米杜沙", "element": "暗屬性", "size": "大型", "battle_role": "戰士·魔法", "skills": "輔助：魔力震擊", "bonds": ["近戰羈絆", "暗屬性羈絆", "戰士羈絆"]}, {"family": "惡魔系", "name": "靈巧的馬爾杜克", "element": "雷屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "雷屬性羈絆", "法師羈絆"]}, {"family": "植物系", "name": "巨嘴噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "暗域噬魂\n輔助：噬魂毒霧", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "兇猛魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "孢子衝撞\n輔助：菌落重擊", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "兇殘花怪", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "光合飛彈\n輔助：光能灌注", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "冰拳摩卡", "element": "水屬性", "size": "超大型", "battle_role": "戰士·魔法", "skills": "冰拳重擊\n輔助：寒冰衝擊", "bonds": ["近戰羈絆", "水屬性羈絆", "戰士羈絆"]}, {"family": "植物系", "name": "邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "厚實的草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "植物系", "name": "堅硬的摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "強壯的魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "敏捷的乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "植物系", "name": "詛咒的邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "詛咒的草精", "element": "地屬性", "size": "中型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "詛咒的摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "詛咒的噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "詛咒的樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "感染的魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "憤怒的噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "憤怒的樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "摩卡", "element": "水屬性", "size": "大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "水屬性羈絆", "射手羈絆"]}, {"family": "植物系", "name": "暴躁的邪惡向日葵", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "噬人花", "element": "暗屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "暗屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "樹精", "element": "地屬性", "size": "大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "植物系", "name": "魔菇", "element": "水屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "水屬性羈絆", "牧師羈絆"]}, {"family": "植物系", "name": "蠱惑的乾扁草精", "element": "風屬性", "size": "中型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "風屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "女王甲蟲", "element": "光屬性", "size": "小型", "battle_role": "法師·魔法", "skills": "輝燼三重\n輔助：光綻斥滅", "bonds": ["遠程羈絆", "光屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "天使波利", "element": "光屬性", "size": "大型", "battle_role": "牧師·物理", "skills": "波利衝擊天使光環\n輔助：天使之光", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "狡猾的火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "堅硬的鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "發狂的波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "詛咒的波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "詛咒的鹿角甲蟲", "element": "光屬性", "size": "小型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "光屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "感染的火波利", "element": "火屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "火屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "感染的胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "聖靈系", "name": "憤怒的波波利", "element": "風屬性", "size": "中型", "battle_role": "牧師·魔法", "skills": "輔助：魔傷療癒", "bonds": ["遠程羈絆", "風屬性羈絆", "牧師羈絆"]}, {"family": "聖靈系", "name": "暴躁的水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "蠱惑的水滴波利", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["近戰羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "聖靈系", "name": "蠱惑的波利", "element": "地屬性", "size": "中型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["遠程羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "聖靈系", "name": "靈巧的胡狼頭神", "element": "光屬性", "size": "超大型", "battle_role": "刺客·物理", "skills": "輔助：追加打擊", "bonds": ["近戰羈絆", "光屬性羈絆", "刺客羈絆"]}, {"family": "精靈系", "name": "巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "血蝴蝶", "element": "風屬性", "size": "小型", "battle_role": "射手·物理", "skills": "蝶影蜜雨\n輔助：粉蝶漣漪", "bonds": ["遠程羈絆", "風屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "泥怪", "element": "水屬性", "size": "超大型", "battle_role": "法師·魔法", "skills": "落石土石流\n輔助：泥潭爆發", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "敏捷的巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "森林守衛", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "擲苗飛襲\n輔助：根汲震域", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "精靈系", "name": "發狂的泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "詛咒的泥人", "element": "水屬性", "size": "中型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "水屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "詛咒的森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}, {"family": "精靈系", "name": "感染的長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "熔岩波利", "element": "火屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "熔岩陷阱\n輔助：熔岩噴發", "bonds": ["遠程羈絆", "火屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "暴躁的沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "暴躁的長老樹精", "element": "地屬性", "size": "超大型", "battle_role": "坦克·魔法", "skills": "輔助：魔防加固", "bonds": ["近戰羈絆", "地屬性羈絆", "坦克羈絆"]}, {"family": "精靈系", "name": "蠱惑的巨石怪", "element": "地屬性", "size": "超大型", "battle_role": "射手·物理", "skills": "輔助：穿透飛箭", "bonds": ["遠程羈絆", "地屬性羈絆", "射手羈絆"]}, {"family": "精靈系", "name": "蠱惑的沙妖", "element": "風屬性", "size": "大型", "battle_role": "法師·魔法", "skills": "輔助：魔力轟擊", "bonds": ["遠程羈絆", "風屬性羈絆", "法師羈絆"]}, {"family": "精靈系", "name": "靈巧的森靈", "element": "地屬性", "size": "中型", "battle_role": "牧師·物理", "skills": "輔助：物傷療癒", "bonds": ["近戰羈絆", "地屬性羈絆", "牧師羈絆"]}];
-    const selectedBonds = new Set();
-    const bondGroups = document.querySelector("#bond-groups");
-    const familySelect = document.querySelector("#family");
+    const pets = [{"tier":"T4","card_type":"R","name":"帕莎納","family":"人形","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T4","card_type":"R","name":"狡猾的帕莎納","family":"人形","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T1","card_type":"R","name":"狡猾的礦工魔","family":"人形","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"強壯的礦工工頭","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"傑洛米","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"發狂的諾可伊","family":"人形","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"詛咒的諾可伊","family":"人形","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"感染的礦工工頭","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"感染的礦工魔","family":"人形","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T4","card_type":"R","name":"暴躁的傑洛米","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"諾可伊","family":"人形","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"礦工工頭","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"礦工魔","family":"人形","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SSR","name":"魔骸工頭","family":"人形","size":"超大型","battle_role":"牧師·物理","job":"服事","monster":"MINI","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"蠱惑的帕莎納","family":"人形","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T4","card_type":"R","name":"蠱惑的傑洛米","family":"人形","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T3","card_type":"N","name":"工蟻","family":"昆蟲","size":"小型","battle_role":"坦克·魔法","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"R","name":"巨象甲蟲","family":"昆蟲","size":"中型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"SSR","name":"巨顎蟻","family":"昆蟲","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"MINI","bond_distance":"近戰","bond_element":"地屬性","bond_job":"戰士"},{"tier":"T3","card_type":"R","name":"白蟻","family":"昆蟲","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"艾吉歐蜈蚣","family":"昆蟲","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T2","card_type":"R","name":"克瑞米","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T3","card_type":"R","name":"兵蟻","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T3","card_type":"R","name":"卷甲蟲","family":"昆蟲","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T3","card_type":"R","name":"幸運的巨象甲蟲","family":"昆蟲","size":"中型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"R","name":"幸運的兵蟻","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T3","card_type":"N","name":"厚實的工蟻","family":"昆蟲","size":"小型","battle_role":"坦克·魔法","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"厚實的瑪勒盜蟲","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SSR","name":"毒紋蝸牛","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T3","card_type":"N","name":"狡猾的蒼蠅","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Normal","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T1","card_type":"SSR","name":"重金屬蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"MINI","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T2","card_type":"N","name":"浮勒盜蟲","family":"昆蟲","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T2","card_type":"N","name":"堅硬的浮勒盜蟲","family":"昆蟲","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T1","card_type":"R","name":"堅硬的蝸牛","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T2","card_type":"N","name":"堅硬的瓢蟲","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T3","card_type":"R","name":"堅硬的鍬形蟲","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"N","name":"強壯的鐵蠍","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Normal","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T1","card_type":"N","name":"敏捷的綠棉蟲","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"地屬性","bond_job":"法師"},{"tier":"T3","card_type":"SR","name":"蚯蚓","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"發狂的艾吉歐蜈蚣","family":"昆蟲","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T2","card_type":"R","name":"發狂的克瑞米","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T3","card_type":"SR","name":"發狂的蚯蚓","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"發狂的蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T3","card_type":"R","name":"詛咒的巨象甲蟲","family":"昆蟲","size":"中型","battle_role":"坦克·物理","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"詛咒的搖滾蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"詛咒的蜂兵","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T1","card_type":"N","name":"詛咒的綠棉蟲","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"地屬性","bond_job":"法師"},{"tier":"T3","card_type":"N","name":"詛咒的蒼蠅","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Normal","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T1","card_type":"R","name":"詛咒的蝸牛","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"詛咒的蠍子","family":"昆蟲","size":"小型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T2","card_type":"UR","name":"黃金蟲","family":"昆蟲","size":"超大型","battle_role":"坦克·魔法","job":"劍士","monster":"MVP","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T3","card_type":"R","name":"黑蟻","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T3","card_type":"R","name":"感染的兵蟻","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T3","card_type":"R","name":"感染的卷甲蟲","family":"昆蟲","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SR","name":"感染的蚯蚓","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"感染的蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T3","card_type":"R","name":"感染的鍬形蟲","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"SR","name":"搖滾蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SSR","name":"蜂后","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"MINI","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T1","card_type":"R","name":"蜂兵","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T2","card_type":"R","name":"瑪勒盜蟲","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T1","card_type":"N","name":"綠棉蟲","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"地屬性","bond_job":"法師"},{"tier":"T3","card_type":"N","name":"蒼蠅","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Normal","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T3","card_type":"R","name":"憤怒的白蟻","family":"昆蟲","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T3","card_type":"R","name":"暴躁的卷甲蟲","family":"昆蟲","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T3","card_type":"R","name":"暴躁的黑蟻","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"蝸牛","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T2","card_type":"N","name":"瓢蟲","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T3","card_type":"UR","name":"龍蠅","family":"昆蟲","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"MVP","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T3","card_type":"R","name":"鍬形蟲","family":"昆蟲","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"SSR","name":"隱翅飛蟻","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T3","card_type":"UR","name":"蟻后","family":"昆蟲","size":"小型","battle_role":"牧師·魔法","job":"服事","monster":"MVP","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"蠍子","family":"昆蟲","size":"小型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T4","card_type":"N","name":"鐵蠍","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Normal","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T3","card_type":"N","name":"蠱惑的工蟻","family":"昆蟲","size":"小型","battle_role":"坦克·魔法","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"R","name":"蠱惑的白蟻","family":"昆蟲","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"蠱惑的艾吉歐蜈蚣","family":"昆蟲","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T2","card_type":"R","name":"蠱惑的克瑞米","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T2","card_type":"N","name":"蠱惑的浮勒盜蟲","family":"昆蟲","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T3","card_type":"R","name":"蠱惑的黑蟻","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T2","card_type":"R","name":"蠱惑的瑪勒盜蟲","family":"昆蟲","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T2","card_type":"N","name":"蠱惑的瓢蟲","family":"昆蟲","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T4","card_type":"N","name":"蠱惑的鐵蠍","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Normal","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T2","card_type":"R","name":"靈巧的搖滾蝗蟲","family":"昆蟲","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"靈巧的蜂兵","family":"昆蟲","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T4","card_type":"R","name":"靈巧的蠍子","family":"昆蟲","size":"小型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SSR","name":"鑽地沙蟲","family":"昆蟲","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"木乃伊","family":"幽靈","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"白幽靈","family":"幽靈","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T2","card_type":"R","name":"伊特瓢蟲","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T4","card_type":"R","name":"岩石龜","family":"幽靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T2","card_type":"UR","name":"幽靈波利","family":"幽靈","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"MVP","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T2","card_type":"R","name":"狡猾的白幽靈","family":"幽靈","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T4","card_type":"R","name":"狡猾的岩石龜","family":"幽靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T2","card_type":"R","name":"堅硬的伊特瓢蟲","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T4","card_type":"R","name":"畢萊特","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"詛咒的木乃伊","family":"幽靈","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"詛咒的岩石龜","family":"幽靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T4","card_type":"R","name":"感染的畢萊特","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"憤怒的木乃伊","family":"幽靈","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"坦克"},{"tier":"T4","card_type":"R","name":"憤怒的畢萊特","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"戰士"},{"tier":"T2","card_type":"R","name":"蠱惑的白幽靈","family":"幽靈","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T2","card_type":"R","name":"蠱惑的伊特瓢蟲","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SSR","name":"鑽心瓢蟲","family":"幽靈","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"MINI","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T3","card_type":"SSR","name":"七彩大嘴鳥","family":"動物","size":"大型","battle_role":"戰士·物理","job":"商人","monster":"MINI","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T1","card_type":"R","name":"土撥鼠","family":"動物","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T2","card_type":"SR","name":"大腳熊","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T3","card_type":"R","name":"大嘴鳥","family":"動物","size":"大型","battle_role":"戰士·物理","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T1","card_type":"N","name":"小野豬","family":"動物","size":"小型","battle_role":"坦克·物理","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T1","card_type":"N","name":"小雞","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T1","card_type":"UR","name":"巧克猴","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"MVP","bond_distance":"近戰","bond_element":"地屬性","bond_job":"戰士"},{"tier":"T2","card_type":"N","name":"白鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SSR","name":"吸血蝙蝠","family":"動物","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"MINI","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"法師"},{"tier":"T3","card_type":"SR","name":"沙漠之狼","family":"動物","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"沙漠巨蜥","family":"動物","size":"超大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T3","card_type":"N","name":"沙漠幼狼","family":"動物","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SSR","name":"狂暴大腳熊","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T3","card_type":"SR","name":"禿鷹","family":"動物","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T3","card_type":"R","name":"刺蝟","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SSR","name":"卷鬃山豬王","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"幸運的土撥鼠","family":"動物","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T1","card_type":"N","name":"幸運的小野豬","family":"動物","size":"小型","battle_role":"坦克·物理","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"幸運的沙漠巨蜥","family":"動物","size":"超大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T4","card_type":"N","name":"幸運的傘蜥","family":"動物","size":"大型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T1","card_type":"N","name":"幸運的瘋兔","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T3","card_type":"SR","name":"厚實的沙漠之狼","family":"動物","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T4","card_type":"R","name":"毒蛇","family":"動物","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"法師"},{"tier":"T3","card_type":"UR","name":"流浪之狼","family":"動物","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"MVP","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"狡猾的紅蝙蝠","family":"動物","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"法師"},{"tier":"T1","card_type":"R","name":"狡猾的狸貓","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"紅蝙蝠","family":"動物","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"法師"},{"tier":"T1","card_type":"R","name":"狸貓","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"狼","family":"動物","size":"中型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T3","card_type":"N","name":"堅硬的沙漠幼狼","family":"動物","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T3","card_type":"SR","name":"強壯的禿鷹","family":"動物","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"強壯的毒蛇","family":"動物","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"法師"},{"tier":"T2","card_type":"R","name":"強壯的藍鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T2","card_type":"N","name":"敏捷的白鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"敏捷的溜溜猴","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T1","card_type":"SSR","name":"蛋殼小雞","family":"動物","size":"中型","battle_role":"戰士·物理","job":"商人","monster":"MINI","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SR","name":"野豬","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T4","card_type":"N","name":"傘蜥","family":"動物","size":"大型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"發狂的野豬","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T4","card_type":"N","name":"發狂的黑蛇","family":"動物","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T3","card_type":"R","name":"詛咒的大嘴鳥","family":"動物","size":"大型","battle_role":"戰士·物理","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T3","card_type":"R","name":"詛咒的刺蝟","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T4","card_type":"R","name":"詛咒的毒蛇","family":"動物","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"法師"},{"tier":"T4","card_type":"N","name":"詛咒的傘蜥","family":"動物","size":"大型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"詛咒的溜溜猴","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"R","name":"詛咒的藍鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T4","card_type":"N","name":"黑蛇","family":"動物","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"感染的大腳熊","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T2","card_type":"N","name":"感染的白鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"感染的禿鷹","family":"動物","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"感染的狸貓","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"火屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"感染的狼","family":"動物","size":"中型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SR","name":"感染的野豬","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T1","card_type":"N","name":"感染的瘋兔","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T1","card_type":"SR","name":"溜溜猴","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T3","card_type":"UR","name":"獅鷲獸","family":"動物","size":"超大型","battle_role":"射手·物理","job":"弓箭手","monster":"MVP","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T3","card_type":"SSR","name":"雷極刺蝟","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"刺客"},{"tier":"T1","card_type":"N","name":"瘋兔","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T3","card_type":"R","name":"憤怒的大嘴鳥","family":"動物","size":"大型","battle_role":"戰士·物理","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"風屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SR","name":"憤怒的狼","family":"動物","size":"中型","battle_role":"戰士·物理","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SR","name":"暴躁的大腳熊","family":"動物","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T1","card_type":"N","name":"暴躁的小雞","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SSR","name":"瘟疫毒鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T2","card_type":"R","name":"藍鼠","family":"動物","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SSR","name":"藍瘋兔","family":"動物","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T1","card_type":"R","name":"蠱惑的土撥鼠","family":"動物","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T1","card_type":"N","name":"蠱惑的小野豬","family":"動物","size":"小型","battle_role":"坦克·物理","job":"劍士","monster":"Normal","bond_distance":"近戰","bond_element":"水屬性","bond_job":"坦克"},{"tier":"T1","card_type":"N","name":"蠱惑的小雞","family":"動物","size":"小型","battle_role":"戰士·物理","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T3","card_type":"SR","name":"蠱惑的沙漠之狼","family":"動物","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"蠱惑的沙漠巨蜥","family":"動物","size":"超大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T3","card_type":"N","name":"蠱惑的沙漠幼狼","family":"動物","size":"小型","battle_role":"戰士·魔法","job":"商人","monster":"Normal","bond_distance":"近戰","bond_element":"火屬性","bond_job":"戰士"},{"tier":"T1","card_type":"SR","name":"蠱惑的紅蝙蝠","family":"動物","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"法師"},{"tier":"T4","card_type":"N","name":"蠱惑的黑蛇","family":"動物","size":"中型","battle_role":"刺客·魔法","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T3","card_type":"R","name":"靈巧的刺蝟","family":"動物","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Rare","bond_distance":"近戰","bond_element":"地屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"小巴風特","family":"惡魔","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"小惡魔","family":"惡魔","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"刺客"},{"tier":"T2","card_type":"UR","name":"巴風特","family":"惡魔","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"MVP","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SR","name":"米杜沙","family":"惡魔","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"米洛斯","family":"惡魔","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"厚實的米杜沙","family":"惡魔","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"厚實的米洛斯","family":"惡魔","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"厚實的毒魔菇","family":"惡魔","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"厚實的曼陀羅魔花","family":"惡魔","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T2","card_type":"SSR","name":"毒菇首領","family":"惡魔","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"毒魔菇","family":"惡魔","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"馬爾杜克","family":"惡魔","size":"超大型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T2","card_type":"SR","name":"強壯的小巴風特","family":"惡魔","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"刺客"},{"tier":"T4","card_type":"R","name":"強壯的蛇女伊絲","family":"惡魔","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T3","card_type":"SR","name":"敏捷的親衛巨蟻","family":"惡魔","size":"大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T2","card_type":"R","name":"曼陀羅魔花","family":"惡魔","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"蛇女伊絲","family":"惡魔","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"蛇女祭司","family":"惡魔","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T2","card_type":"UR","name":"惡魔波利","family":"惡魔","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"MVP","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"戰士"},{"tier":"T2","card_type":"R","name":"詛咒的曼陀羅魔花","family":"惡魔","size":"大型","battle_role":"牧師·魔法","job":"服事","monster":"Rare","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T4","card_type":"R","name":"詛咒的蛇女伊絲","family":"惡魔","size":"中型","battle_role":"戰士·魔法","job":"商人","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"感染的米洛斯","family":"惡魔","size":"超大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"感染的毒魔菇","family":"惡魔","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Rare","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"感染的馬爾杜克","family":"惡魔","size":"超大型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T4","card_type":"SR","name":"感染的蛇女祭司","family":"惡魔","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T3","card_type":"SR","name":"感染的親衛巨蟻","family":"惡魔","size":"大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T2","card_type":"SR","name":"憤怒的小惡魔","family":"惡魔","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SR","name":"憤怒的蛇女祭司","family":"惡魔","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"法師"},{"tier":"T3","card_type":"SR","name":"親衛巨蟻","family":"惡魔","size":"大型","battle_role":"坦克·物理","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T2","card_type":"SR","name":"蠱惑的小巴風特","family":"惡魔","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"蠱惑的小惡魔","family":"惡魔","size":"小型","battle_role":"刺客·魔法","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SR","name":"蠱惑的米杜沙","family":"惡魔","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SR","name":"靈巧的馬爾杜克","family":"惡魔","size":"超大型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T2","card_type":"SR","name":"巨嘴噬人花","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"兇猛魔菇","family":"植物","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T2","card_type":"SSR","name":"兇殘花怪","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"MINI","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SSR","name":"冰拳摩卡","family":"植物","size":"超大型","battle_role":"戰士·魔法","job":"商人","monster":"MINI","bond_distance":"近戰","bond_element":"水屬性","bond_job":"戰士"},{"tier":"T2","card_type":"SR","name":"邪惡向日葵","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"厚實的草精","family":"植物","size":"中型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T1","card_type":"R","name":"草精","family":"植物","size":"中型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T3","card_type":"N","name":"乾扁草精","family":"植物","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"堅硬的摩卡","family":"植物","size":"大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T1","card_type":"R","name":"強壯的魔菇","family":"植物","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T3","card_type":"N","name":"敏捷的乾扁草精","family":"植物","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T2","card_type":"SR","name":"詛咒的邪惡向日葵","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"詛咒的草精","family":"植物","size":"中型","battle_role":"射手·物理","job":"弓箭手","monster":"Rare","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T3","card_type":"SR","name":"詛咒的摩卡","family":"植物","size":"大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T2","card_type":"SR","name":"詛咒的噬人花","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"詛咒的樹精","family":"植物","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"感染的魔菇","family":"植物","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T2","card_type":"SR","name":"憤怒的噬人花","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"憤怒的樹精","family":"植物","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"SR","name":"摩卡","family":"植物","size":"大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"水屬性","bond_job":"射手"},{"tier":"T2","card_type":"SR","name":"暴躁的邪惡向日葵","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T2","card_type":"SR","name":"噬人花","family":"植物","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"樹精","family":"植物","size":"大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"R","name":"魔菇","family":"植物","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Rare","bond_distance":"近戰","bond_element":"水屬性","bond_job":"牧師"},{"tier":"T3","card_type":"N","name":"蠱惑的乾扁草精","family":"植物","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"Normal","bond_distance":"近戰","bond_element":"風屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SSR","name":"女王甲蟲","family":"聖靈","size":"小型","battle_role":"法師·魔法","job":"魔法師","monster":"MINI","bond_distance":"遠程","bond_element":"光屬性","bond_job":"法師"},{"tier":"T1","card_type":"UR","name":"天使波利","family":"聖靈","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"MVP","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"水滴波利","family":"聖靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"法師"},{"tier":"T3","card_type":"SR","name":"火波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"波利","family":"聖靈","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"SR","name":"波波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SR","name":"狡猾的火波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"牧師"},{"tier":"T4","card_type":"SR","name":"胡狼頭神","family":"聖靈","size":"超大型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T3","card_type":"SR","name":"堅硬的鹿角甲蟲","family":"聖靈","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SR","name":"鹿角甲蟲","family":"聖靈","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"發狂的波利","family":"聖靈","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T1","card_type":"SR","name":"詛咒的波波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SR","name":"詛咒的鹿角甲蟲","family":"聖靈","size":"小型","battle_role":"牧師·物理","job":"服事","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T3","card_type":"SR","name":"感染的火波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"火屬性","bond_job":"牧師"},{"tier":"T4","card_type":"SR","name":"感染的胡狼頭神","family":"聖靈","size":"超大型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T1","card_type":"SR","name":"憤怒的波波利","family":"聖靈","size":"中型","battle_role":"牧師·魔法","job":"服事","monster":"Elite","bond_distance":"遠程","bond_element":"風屬性","bond_job":"牧師"},{"tier":"T1","card_type":"SR","name":"暴躁的水滴波利","family":"聖靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"法師"},{"tier":"T1","card_type":"SR","name":"蠱惑的水滴波利","family":"聖靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Elite","bond_distance":"近戰","bond_element":"水屬性","bond_job":"法師"},{"tier":"T1","card_type":"SR","name":"蠱惑的波利","family":"聖靈","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"靈巧的胡狼頭神","family":"聖靈","size":"超大型","battle_role":"刺客·物理","job":"盜賊","monster":"Elite","bond_distance":"近戰","bond_element":"光屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SR","name":"巨石怪","family":"精靈","size":"超大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T2","card_type":"SSR","name":"血蝴蝶","family":"精靈","size":"小型","battle_role":"射手·物理","job":"弓箭手","monster":"MINI","bond_distance":"遠程","bond_element":"風屬性","bond_job":"射手"},{"tier":"T4","card_type":"N","name":"沙妖","family":"精靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"風屬性","bond_job":"法師"},{"tier":"T1","card_type":"R","name":"泥人","family":"精靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T1","card_type":"UR","name":"泥怪","family":"精靈","size":"超大型","battle_role":"法師·魔法","job":"魔法師","monster":"MVP","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T2","card_type":"SR","name":"長老樹精","family":"精靈","size":"超大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"敏捷的巨石怪","family":"精靈","size":"超大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T1","card_type":"SSR","name":"森林守衛","family":"精靈","size":"超大型","battle_role":"坦克·魔法","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T2","card_type":"N","name":"森靈","family":"精靈","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T1","card_type":"R","name":"發狂的泥人","family":"精靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T1","card_type":"R","name":"詛咒的泥人","family":"精靈","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"Rare","bond_distance":"遠程","bond_element":"水屬性","bond_job":"法師"},{"tier":"T2","card_type":"N","name":"詛咒的森靈","family":"精靈","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T2","card_type":"SR","name":"感染的長老樹精","family":"精靈","size":"超大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T3","card_type":"SSR","name":"熔岩波利","family":"精靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"MINI","bond_distance":"遠程","bond_element":"火屬性","bond_job":"法師"},{"tier":"T4","card_type":"N","name":"暴躁的沙妖","family":"精靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"風屬性","bond_job":"法師"},{"tier":"T2","card_type":"SR","name":"暴躁的長老樹精","family":"精靈","size":"超大型","battle_role":"坦克·魔法","job":"劍士","monster":"Elite","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SR","name":"蠱惑的巨石怪","family":"精靈","size":"超大型","battle_role":"射手·物理","job":"弓箭手","monster":"Elite","bond_distance":"遠程","bond_element":"地屬性","bond_job":"射手"},{"tier":"T4","card_type":"N","name":"蠱惑的沙妖","family":"精靈","size":"大型","battle_role":"法師·魔法","job":"魔法師","monster":"Normal","bond_distance":"遠程","bond_element":"風屬性","bond_job":"法師"},{"tier":"T2","card_type":"N","name":"靈巧的森靈","family":"精靈","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T4","card_type":"N","name":"靈巧的森靈","family":"精靈","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"Normal","bond_distance":"近戰","bond_element":"地屬性","bond_job":"牧師"},{"tier":"T4","card_type":"SSR","name":"眼鏡蛇王","family":"動物","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"毒屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SSR","name":"魔眼蛇女","family":"惡魔","size":"中型","battle_role":"射手·物理","job":"弓箭手","monster":"MINI","bond_distance":"遠程","bond_element":"毒屬性","bond_job":"射手"},{"tier":"T4","card_type":"SSR","name":"牛頭領主","family":"惡魔","size":"大型","battle_role":"坦克·物理","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"火屬性","bond_job":"坦克"},{"tier":"T4","card_type":"SSR","name":"怨骨石奴","family":"幽靈","size":"中型","battle_role":"牧師·物理","job":"服事","monster":"MINI","bond_distance":"遠程","bond_element":"暗屬性","bond_job":"牧師"},{"tier":"T4","card_type":"SSR","name":"月影雷喵","family":"幽靈","size":"小型","battle_role":"刺客·物理","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"雷屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SSR","name":"帕莎娜首領","family":"人形","size":"中型","battle_role":"刺客·物理","job":"盜賊","monster":"MINI","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"刺客"},{"tier":"T4","card_type":"SSR","name":"蜥蜴人","family":"人形","size":"大型","battle_role":"射手·物理","job":"弓箭手","monster":"MINI","bond_distance":"遠程","bond_element":"光屬性","bond_job":"射手"},{"tier":"T4","card_type":"UR","name":"沙葬者","family":"精靈","size":"超大型","battle_role":"戰士·魔法","job":"商人","monster":"MVP","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"},{"tier":"T4","card_type":"UR","name":"迷宮守護者","family":"聖靈","size":"大型","battle_role":"牧師·物理","job":"服事","monster":"MVP","bond_distance":"近戰","bond_element":"光屬性","bond_job":"牧師"},{"tier":"T4","card_type":"UR","name":"古埃及王","family":"人形","size":"中型","battle_role":"法師·魔法","job":"魔法師","monster":"MVP","bond_distance":"遠程","bond_element":"雷屬性","bond_job":"法師"},{"tier":"T4","card_type":"UR","name":"法老王","family":"幽靈","size":"大型","battle_role":"戰士·魔法","job":"商人","monster":"MVP","bond_distance":"近戰","bond_element":"暗屬性","bond_job":"戰士"},{"tier":"T4","card_type":"SSR","name":"石錘巨人","family":"精靈","size":"中型","battle_role":"坦克·魔法","job":"劍士","monster":"MINI","bond_distance":"近戰","bond_element":"地屬性","bond_job":"坦克"}];
+    const bondFilters = [
+      { key: "distance", field: "bond_distance", container: "#distance-options" },
+      { key: "element", field: "bond_element", container: "#element-options" },
+      { key: "job", field: "bond_job" }
+    ];
+    const selectedBonds = {
+      distance: new Set(),
+      element: new Set()
+    };
+    const selectedFamilies = new Set();
+    const selectedRolePairs = new Set();
+    const rolePairs = [
+      { job: "盜賊", role: "刺客" },
+      { job: "劍士", role: "坦克" },
+      { job: "服事", role: "牧師" },
+      { job: "商人", role: "戰士" },
+      { job: "弓箭手", role: "射手" },
+      { job: "魔法師", role: "法師" }
+    ];
+    const searchInput = document.querySelector("#search");
     const minimumBondSelect = document.querySelector("#minimum-bonds");
+    const mobileSortSelect = document.querySelector("#mobile-sort");
     const resultsBody = document.querySelector("#results");
     const summary = document.querySelector("#summary");
-    const sortKeySelect = document.querySelector("#sort-key");
-    const sortDirectionButton = document.querySelector("#sort-direction");
+    const lastUpdated = document.querySelector("#last-updated");
     const sortButtons = [...document.querySelectorAll(".sort-button")];
-    const sortState = { key: "stars", direction: -1 };
+    const sortState = { key: "name", direction: 1 };
+    const tierRank = { T1: 4, T2: 3, T3: 2, T4: 1 };
+    const rarityRank = { UR: 5, SSR: 4, SR: 3, R: 2, N: 1 };
     const sortValue = {
-      stars: item => item.matchedBonds.length,
+      tier: item => tierRank[item.pet.tier] ?? 0,
+      card_type: item => rarityRank[item.pet.card_type] ?? 0,
       name: item => item.pet.name,
       family: item => item.pet.family,
-      element: item => item.pet.element,
       size: item => item.pet.size,
       battle_role: item => item.pet.battle_role,
-      skills: item => item.pet.skills,
-      bonds: item => item.matchedBonds.join("、")
+      job: item => item.pet.job,
+      monster: item => rarityRank[item.pet.card_type] ?? 0,
+      bonds: item => item.matchedBonds.length
     };
 
     function updateSortControls() {
-      sortKeySelect.value = sortState.key;
-      const directionLabel = sortState.key === "stars"
-        ? (sortState.direction === 1 ? "低→高" : "高→低")
-        : (sortState.direction === 1 ? "A→Z" : "Z→A");
-      sortDirectionButton.textContent = directionLabel;
-      sortDirectionButton.setAttribute("aria-label", `切換排序方向，目前為${directionLabel}`);
-
       for (const button of sortButtons) {
         const active = button.dataset.sort === sortState.key;
         const header = button.closest("th");
+        const directionLabel = sortState.direction === 1 ? "升冪" : "降冪";
         button.setAttribute("aria-pressed", String(active));
+        button.setAttribute(
+          "aria-label",
+          `依${button.firstChild.textContent.trim()}排序${active ? `，目前${directionLabel}` : ""}`
+        );
         header.setAttribute(
           "aria-sort",
           active ? (sortState.direction === 1 ? "ascending" : "descending") : "none"
@@ -528,109 +848,202 @@
         button.querySelector(".sort-indicator").textContent =
           active ? (sortState.direction === 1 ? "↑" : "↓") : "";
       }
+      mobileSortSelect.value = `${sortState.key}:${sortState.direction}`;
     }
 
-    function setSort(key, toggleDirection) {
-      if (key === sortState.key && toggleDirection) {
+    function defaultSortDirection(key) {
+      return ["tier", "card_type", "monster", "bonds"].includes(key) ? -1 : 1;
+    }
+
+    function setSort(key, direction) {
+      if (direction === 1 || direction === -1) {
+        sortState.key = key;
+        sortState.direction = direction;
+      } else if (key === sortState.key) {
         sortState.direction *= -1;
       } else {
         sortState.key = key;
-        sortState.direction = key === "stars" ? -1 : 1;
+        sortState.direction = defaultSortDirection(key);
       }
       updateSortControls();
       renderResults();
     }
 
-    function groupForBond(bond) {
-      if (bond === "近戰羈絆" || bond === "遠程羈絆") return "距離";
-      if (bond.endsWith("屬性羈絆")) return "屬性";
-      return "職業";
+    function renderLastUpdated() {
+      const updatedAt = new Date(document.lastModified);
+      if (Number.isNaN(updatedAt.getTime())) {
+        lastUpdated.textContent = "最後製作更新時間無法取得";
+        return;
+      }
+      const pad = value => String(value).padStart(2, "0");
+      const date = `${updatedAt.getFullYear()}/${pad(updatedAt.getMonth() + 1)}/${pad(updatedAt.getDate())}`;
+      const time = `${pad(updatedAt.getHours())}:${pad(updatedAt.getMinutes())}:${pad(updatedAt.getSeconds())}`;
+      lastUpdated.dateTime = updatedAt.toISOString();
+      lastUpdated.textContent = `最後製作更新：${date} ${time}`;
+    }
+
+    function activeBondCount() {
+      return bondFilters.filter(({ key }) => selectedBondValues(key).size > 0).length;
+    }
+
+    function selectedBondValues(key) {
+      if (key !== "job") return selectedBonds[key];
+      return new Set(
+        rolePairs
+          .filter(pair => selectedRolePairs.has(`${pair.job}:${pair.role}`))
+          .map(pair => pair.role)
+      );
+    }
+
+    function matchedBonds(pet) {
+      return bondFilters
+        .filter(({ key, field }) => {
+          const selected = selectedBondValues(key);
+          return selected.size > 0 && selected.has(pet[field]);
+        })
+        .map(({ field }) => pet[field]);
+    }
+
+    function displayBondValue(value) {
+      return value.replace(/屬性$/, "屬");
+    }
+
+    function matchesRolePair(pet) {
+      if (!selectedRolePairs.size) return true;
+      const role = pet.battle_role.split("·")[0];
+      return rolePairs.some(pair =>
+        selectedRolePairs.has(`${pair.job}:${pair.role}`) &&
+        pet.job === pair.job &&
+        role === pair.role
+      );
     }
 
     function createCell(row, value, className, label) {
       const cell = document.createElement("td");
       if (className) cell.className = className;
       if (label) cell.dataset.label = label;
-      cell.textContent = value;
+      cell.textContent = value ?? "";
       row.append(cell);
       return cell;
     }
 
     function updateMinimumOptions() {
       const previous = Number(minimumBondSelect.value);
-      const max = pets.reduce(
-        (highest, pet) => Math.max(
-          highest,
-          pet.bonds.filter(bond => selectedBonds.has(bond)).length
-        ),
-        0
-      );
+      const max = activeBondCount();
       minimumBondSelect.replaceChildren();
       for (let count = 0; count <= max; count += 1) {
         const option = document.createElement("option");
         option.value = String(count);
-        option.textContent = count === 0 ? "不限制" : `至少 ${count} 項`;
+        option.textContent = count === 0
+          ? (max === 0 ? "先勾選羈絆" : "不限制")
+          : `至少 ${count} 類`;
         minimumBondSelect.append(option);
       }
       minimumBondSelect.value = String(Math.min(previous, max));
+      minimumBondSelect.disabled = max === 0;
     }
 
-    function renderBonds() {
-      const groups = new Map([
-        ["距離", []],
-        ["屬性", []],
-        ["職業", []]
-      ]);
-      const allBonds = [...new Set(pets.flatMap(pet => pet.bonds))];
-      for (const bond of allBonds) groups.get(groupForBond(bond)).push(bond);
-      bondGroups.replaceChildren();
+    function renderCheckboxes(
+      container,
+      values,
+      selectedValues,
+      className,
+      onChange,
+      formatValue = value => value
+    ) {
+      container.replaceChildren();
+      for (const value of values) {
+        const label = document.createElement("label");
+        label.className = className;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = value;
+        checkbox.checked = selectedValues.has(value);
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) selectedValues.add(value);
+          else selectedValues.delete(value);
+          onChange();
+        });
+        label.append(checkbox, document.createTextNode(formatValue(value)));
+        container.append(label);
+      }
+    }
 
-      for (const [groupName, bonds] of groups) {
-        const section = document.createElement("section");
-        section.className = "bond-group";
-        const heading = document.createElement("h3");
-        heading.textContent = groupName;
-        const options = document.createElement("div");
-        options.className = "bond-options";
-        for (const bond of bonds) {
-          const label = document.createElement("label");
-          label.className = "bond-option";
-          const checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.value = bond;
-          checkbox.checked = selectedBonds.has(bond);
-          checkbox.addEventListener("change", () => {
-            if (checkbox.checked) selectedBonds.add(bond);
-            else selectedBonds.delete(bond);
-            updateMinimumOptions();
-            renderResults();
-          });
-          label.append(checkbox, document.createTextNode(bond));
-          options.append(label);
+    function renderFilters() {
+      const families = [...new Set(pets.map(pet => pet.family))];
+      renderCheckboxes(
+        document.querySelector("#family-options"),
+        families,
+        selectedFamilies,
+        "filter-checkbox",
+        () => {
+          renderResults();
         }
-        section.append(heading, options);
-        bondGroups.append(section);
+      );
+
+      const pairOptions = document.querySelector("#role-pairs");
+      pairOptions.replaceChildren();
+      for (const pair of rolePairs) {
+        const pairKey = `${pair.job}:${pair.role}`;
+        const label = document.createElement("label");
+        label.className = "pair-option";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = pairKey;
+        checkbox.checked = selectedRolePairs.has(pairKey);
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) selectedRolePairs.add(pairKey);
+          else selectedRolePairs.delete(pairKey);
+          updateMinimumOptions();
+          renderResults();
+        });
+        const pairCopy = document.createElement("span");
+        pairCopy.className = "pair-copy";
+        const job = document.createElement("span");
+        job.className = "pair-job";
+        job.textContent = pair.job;
+        const arrow = document.createElement("span");
+        arrow.className = "pair-arrow";
+        arrow.textContent = "↕";
+        const role = document.createElement("span");
+        role.className = "pair-role";
+        role.textContent = pair.role;
+        pairCopy.append(job, arrow, role);
+        label.append(checkbox, pairCopy);
+        pairOptions.append(label);
       }
 
-      document.querySelector("#bond-count").textContent =
-        `已選 ${selectedBonds.size} 項羈絆；每隻寵物的星數依符合項目計算。`;
+      for (const { key, field, container } of bondFilters) {
+        if (!container) continue;
+        const values = [...new Set(pets.map(pet => pet[field]).filter(Boolean))];
+        renderCheckboxes(
+          document.querySelector(container),
+          values,
+          selectedBonds[key],
+          "bond-option",
+          () => {
+            updateMinimumOptions();
+            renderResults();
+          },
+          displayBondValue
+        );
+      }
       updateMinimumOptions();
     }
 
     function renderResults() {
-      const query = document.querySelector("#search").value.trim().toLocaleLowerCase();
-      const family = familySelect.value;
+      const query = searchInput.value.trim().toLocaleLowerCase();
       const minimum = Number(minimumBondSelect.value);
-      const selected = [...selectedBonds];
       const matches = pets
         .map((pet, index) => ({
           pet,
           index,
-          matchedBonds: pet.bonds.filter(bond => selectedBonds.has(bond))
+          matchedBonds: matchedBonds(pet)
         }))
         .filter(item =>
           item.matchedBonds.length >= minimum &&
-          (!family || item.pet.family === family) &&
+          (!selectedFamilies.size || selectedFamilies.has(item.pet.family)) &&
+          matchesRolePair(item.pet) &&
           (!query || item.pet.name.toLocaleLowerCase().includes(query))
         )
         .sort((a, b) => {
@@ -646,23 +1059,24 @@
         });
 
       resultsBody.replaceChildren();
-      matches.forEach((item, index) => {
+      matches.forEach(item => {
         const { pet, matchedBonds } = item;
         const row = document.createElement("tr");
-        createCell(row, String(index + 1), "", "優先");
-        createCell(row, matchedBonds.length ? "★".repeat(matchedBonds.length) : "—", "stars", "星數");
+        createCell(row, pet.tier, "", "T級");
+        createCell(row, pet.card_type, "", "卡別");
         createCell(row, pet.name, "name", "寵物名");
-        createCell(row, pet.family, "", "分類");
-        createCell(row, pet.element, "", "屬性");
+        createCell(row, pet.family, "", "類型");
         createCell(row, pet.size, "", "體型");
         createCell(row, pet.battle_role, "", "戰鬥定位");
-        createCell(row, pet.skills, "skills", "技能");
+        createCell(row, pet.job, "", "職業");
+        createCell(row, pet.monster, "", "魔物");
         const bondCell = document.createElement("td");
-        bondCell.dataset.label = "符合的羈絆";
+        bondCell.className = "bond-cell";
+        bondCell.setAttribute("aria-label", "符合的羈絆");
         for (const bond of matchedBonds) {
           const tag = document.createElement("span");
           tag.className = "tag";
-          tag.textContent = bond;
+          tag.textContent = displayBondValue(bond);
           bondCell.append(tag);
         }
         row.append(bondCell);
@@ -674,40 +1088,36 @@
         const cell = document.createElement("td");
         cell.className = "empty";
         cell.colSpan = 9;
-        cell.textContent = "沒有符合條件的寵物，請調整羈絆或星數。";
+        cell.textContent = "沒有符合的資料，請調整篩選設定。";
         row.append(cell);
         resultsBody.append(row);
       }
 
-      summary.textContent =
-        `符合 ${matches.length} / ${pets.length} 隻` +
-        (selected.length ? ` · 依 ${selected.length} 項已選羈絆計星` : " · 尚未選擇羈絆");
+      summary.textContent = `符合 ${matches.length} / ${pets.length} 隻`;
     }
 
-    const families = [...new Set(pets.map(pet => pet.family))];
-    for (const family of families) {
-      const option = document.createElement("option");
-      option.value = family;
-      option.textContent = family;
-      familySelect.append(option);
-    }
-
-    document.querySelector("#search").addEventListener("input", renderResults);
-    familySelect.addEventListener("change", renderResults);
+    searchInput.addEventListener("input", renderResults);
     minimumBondSelect.addEventListener("change", renderResults);
-    sortKeySelect.addEventListener("change", () => setSort(sortKeySelect.value, false));
-    sortDirectionButton.addEventListener("click", () => setSort(sortState.key, true));
+    mobileSortSelect.addEventListener("change", () => {
+      const [key, direction] = mobileSortSelect.value.split(":");
+      setSort(key, Number(direction));
+    });
     for (const button of sortButtons) {
-      button.addEventListener("click", () => setSort(button.dataset.sort, true));
+      button.addEventListener("click", () => setSort(button.dataset.sort));
     }
     document.querySelector("#clear").addEventListener("click", () => {
-      selectedBonds.clear();
-      renderBonds();
+      searchInput.value = "";
+      for (const selected of Object.values(selectedBonds)) selected.clear();
+      selectedFamilies.clear();
+      selectedRolePairs.clear();
+      minimumBondSelect.value = "0";
+      renderFilters();
       renderResults();
     });
 
     updateSortControls();
-    renderBonds();
+    renderLastUpdated();
+    renderFilters();
     renderResults();
   </script>
 </body>
