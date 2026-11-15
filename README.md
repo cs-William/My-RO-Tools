@@ -13,7 +13,7 @@
 - T 級、卡別／魔物及符合羈絆數預設依 T1→T4、UR→N、3→0 排序，皆可反向排序。
 - 圖鑑筆數依頁面載入的資料自動計算，目前共 289 筆。
 - 羈絆數與清除篩選控制放在圖鑑筆數旁；未選羈絆時羈絆數選單會停用。
-- 資料提醒會顯示 `index.html` 的最後修改日期與時間。
+- 頁首資訊列顯示 `index.html` 的最後更新時間，並列出匿名估算的瀏覽數與在線數。
 - 頁首資訊區與伺服器／公會資訊並列顯示匿名估算的瀏覽數與在線瀏覽器數；手機版以單行精簡呈現。同一瀏覽器 30 分鐘內不重複計入瀏覽。
 
 ## 流量統計 Worker
@@ -32,6 +32,12 @@ Worker 名稱為 `my-ro-tools-stats`，網址為 `https://my-ro-tools-stats.cs03
 統計使用匿名隨機瀏覽器 ID 的雜湊；Worker 程式不讀取或儲存原始 IP。使用者清除網站資料、換瀏覽器或使用無痕視窗時，會被視為新的瀏覽器。此公開統計僅供參考，無法完全防止人為偽造；使用本機 `file://` 開啟網站時，統計 API 不會連線成功，請以 HTTPS 的 GitHub Pages 網址驗收。
 
 Cloudflare 免費額度有用量限制；部署前請查看 Cloudflare 官方最新價格與帳戶用量。
+
+## Google 搜尋
+
+- 網頁提供描述、canonical 與社群分享 metadata；`sitemap.xml` 位於網站根目錄。
+- 在 Google Search Console 新增網址前綴 `https://cs-william.github.io/My-RO-Tools/`，依 Google 提供的 HTML 驗證標籤加入 `index.html` 後發布，再提交 `https://cs-william.github.io/My-RO-Tools/sitemap.xml`。
+- Search Console 驗證標籤需從網站擁有者的 Google 帳號取得；尚未加入任何驗證 token。索引與排名由 Google 決定，提交 sitemap 不保證排名或立即收錄。
 
 ## 本機使用
 

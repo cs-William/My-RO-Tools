@@ -3,7 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>《RO仙境傳說：口袋戰記》 寵物圖鑑</title>
+  <title>RO 口袋戰記寵物圖鑑｜羈絆篩選與排序工具</title>
+  <meta name="description" content="查詢《RO仙境傳說：口袋戰記》寵物圖鑑，依名稱、類型、職業、戰鬥定位、距離與屬性羈絆篩選排序。玩家整理的非官方資料，內容可能與遊戲版本不同。">
+  <link rel="canonical" href="https://cs-william.github.io/My-RO-Tools/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="My RO Tools">
+  <meta property="og:title" content="RO 口袋戰記寵物圖鑑｜羈絆篩選與排序工具">
+  <meta property="og:description" content="查詢《RO仙境傳說：口袋戰記》寵物圖鑑，依名稱、類型、職業、戰鬥定位、距離與屬性羈絆篩選排序。玩家整理的非官方資料，內容可能與遊戲版本不同。">
+  <meta property="og:url" content="https://cs-william.github.io/My-RO-Tools/">
+  <meta name="twitter:card" content="summary">
   <style>
     :root {
       color-scheme: light;
@@ -234,30 +243,28 @@
 
     .empty { padding: 32px; color: #75827d; text-align: center; }
 
-    .offline-notice {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .seo-intro {
       width: min(1560px, calc(100% - 36px));
-      margin: 14px auto 0;
-      padding: 10px 13px;
-      border: 1px solid #eadcad;
-      border-radius: 9px;
-      color: #66572c;
-      background: #fff9e9;
-      font-size: 12px;
-      line-height: 1.5;
+      margin: 12px auto 0;
+      padding: 10px 14px;
+      border-left: 2px solid #58d7ff;
+      color: #b7c8e4;
     }
-
-    .offline-notice strong {
-      flex: 0 0 auto;
-      color: #795b1e;
+    .seo-intro h2 {
+      margin: 0 0 4px;
+      color: #dceaff;
+      font-size: 15px;
     }
-    .last-updated {
-      flex: 0 0 auto;
-      margin-left: auto;
-      color: #91a6c5;
-      font-size: 12px;
+    .seo-intro p {
+      max-width: 1100px;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .site-stats-updated {
+      color: #8193b5;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
 
@@ -491,14 +498,6 @@
       background: #122a40;
     }
     .empty { color: #9cacc9; }
-    .offline-notice {
-      border-color: #65bfff35;
-      color: #b7c8e4;
-      background: #101a2bd9;
-      box-shadow: 0 10px 32px #02061355;
-      backdrop-filter: blur(16px);
-    }
-    .offline-notice strong { color: #83e6ff; }
     .eyebrow {
       margin-bottom: 4px;
       color: #7da8db;
@@ -508,7 +507,7 @@
     }
 
     @media (max-width: 760px) {
-      .workspace, .offline-notice { width: min(100% - 24px, 680px); }
+      .workspace, .seo-intro { width: min(100% - 24px, 680px); }
       .filter-layout { grid-template-columns: 1fr; }
       .results-heading { align-items: flex-start; }
       .collection-actions {
@@ -593,7 +592,7 @@
     @media (max-width: 760px) {
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; }
       .server-meta { justify-content: flex-start; }
-      .workspace, .offline-notice { width: min(100% - 24px, 680px); }
+      .workspace, .seo-intro { width: min(100% - 24px, 680px); }
       .workspace { margin-top: 12px; }
     }
 
@@ -657,7 +656,6 @@
       .server-meta { gap: 6px; }
       .server-item { padding: 7px 9px; }
       .results-heading { align-items: flex-start; padding: 14px; }
-      .offline-notice { align-items: flex-start; flex-direction: column; gap: 3px; }
     }
     @media (max-width: 760px) {
       tbody tr {
@@ -674,7 +672,6 @@
       .checkbox-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .results-heading { align-items: flex-start; padding: 14px; }
       .collection-actions { width: 100%; justify-content: flex-start; }
-      .last-updated { align-self: flex-end; margin-left: 0; }
     }
     @media (max-width: 360px) {
       .collection-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 100px); }
@@ -736,6 +733,8 @@
       <div class="server-item"><span>公會</span><strong>可口可樂</strong></div>
       <span class="server-badge">御用</span>
       <section class="site-stats" aria-label="網站統計">
+        <time id="last-updated" class="site-stats-updated" datetime="2026-11-15T01:08:29+08:00">最後更新：載入中</time>
+        <span class="site-stats-divider" aria-hidden="true">|</span>
         <span class="site-stats-item"><span>瀏覽</span><strong id="total-views">載入中</strong></span>
         <span class="site-stats-divider" aria-hidden="true">|</span>
         <span class="site-stats-item"><span>在線</span><strong id="online-now">載入中</strong></span>
@@ -743,11 +742,10 @@
       </section>
     </div>
   </header>
-  <aside class="offline-notice" role="note">
-    <strong>離線資料提醒</strong>
-    <span>本圖鑑為離線整理版本，非官方資料且不會即時同步；內容可能與目前版本不同，請以官方公告及遊戲內資訊為準。</span>
-    <time id="last-updated" class="last-updated" datetime="2026-11-15T01:08:29+08:00">最後製作更新：2026/11/15 01:08:29</time>
-  </aside>
+  <section class="seo-intro" aria-labelledby="seo-intro-title">
+    <h2 id="seo-intro-title">RO 口袋戰記寵物圖鑑與羈絆查詢</h2>
+    <p>整理《RO仙境傳說：口袋戰記》寵物資料，可依名稱、類型、職業、戰鬥定位、距離與屬性羈絆篩選及排序，方便查找寵物搭配。本頁為玩家整理的非官方資料，內容可能未涵蓋最新版本。</p>
+  </section>
   <main class="workspace">
     <aside class="sidebar">
       <section class="panel filter-panel" aria-label="篩選條件">
@@ -915,14 +913,18 @@
     function renderLastUpdated() {
       const updatedAt = new Date(document.lastModified);
       if (Number.isNaN(updatedAt.getTime())) {
-        lastUpdated.textContent = "最後製作更新時間無法取得";
+        lastUpdated.textContent = "最後更新無法取得";
         return;
       }
       const pad = value => String(value).padStart(2, "0");
       const date = `${updatedAt.getFullYear()}/${pad(updatedAt.getMonth() + 1)}/${pad(updatedAt.getDate())}`;
       const time = `${pad(updatedAt.getHours())}:${pad(updatedAt.getMinutes())}:${pad(updatedAt.getSeconds())}`;
+      const compactTime = `${date} ${pad(updatedAt.getHours())}:${pad(updatedAt.getMinutes())}`;
       lastUpdated.dateTime = updatedAt.toISOString();
-      lastUpdated.textContent = `最後製作更新：${date} ${time}`;
+      const visibleTime = window.matchMedia("(max-width: 520px)").matches
+        ? compactTime
+        : `${date} ${time}`;
+      lastUpdated.textContent = `最後更新：${visibleTime}`;
     }
 
     function activeBondCount() {
@@ -1160,6 +1162,7 @@
 
     updateSortControls();
     renderLastUpdated();
+    window.addEventListener("resize", renderLastUpdated);
     renderFilters();
     renderResults();
   </script>
