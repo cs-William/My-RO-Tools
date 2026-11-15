@@ -689,15 +689,58 @@
       .mobile-sort-control { grid-column: 1; grid-row: 3; }
       .clear-filters { grid-column: 2; grid-row: 3; }
     }
+    .site-stats {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 6px;
+      width: auto;
+      margin: 0;
+      padding: 0 2px;
+      border: 0;
+      color: #dceaff;
+      background: transparent;
+      white-space: nowrap;
+    }
+    .site-stats-item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .site-stats-item span { color: #9cacc9; font-size: 12px; }
+    .site-stats-item strong {
+      color: #eaf2ff;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+    .site-stats-divider { color: #687895; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <h1>《RO仙境傳說：口袋戰記》 寵物圖鑑</h1>
-    <div class="server-meta" aria-label="伺服器與公會資訊">
+    <div class="server-meta" aria-label="伺服器、公會與網站資訊">
       <div class="server-item"><span>伺服器</span><strong>普隆德拉 1</strong></div>
       <div class="server-item"><span>公會</span><strong>可口可樂</strong></div>
       <span class="server-badge">御用</span>
+      <section class="site-stats" aria-label="網站統計">
+        <span class="site-stats-item"><span>瀏覽</span><strong id="total-views">載入中</strong></span>
+        <span class="site-stats-divider" aria-hidden="true">|</span>
+        <span class="site-stats-item"><span>在線</span><strong id="online-now">載入中</strong></span>
+        <span id="stats-status" class="sr-only" role="status">正在連線統計服務</span>
+      </section>
     </div>
   </header>
   <aside class="offline-notice" role="note">
@@ -1119,6 +1162,88 @@
     renderLastUpdated();
     renderFilters();
     renderResults();
+  </script>
+  <script>
+    (() => {
+      const apiBase = "https://my-ro-tools-stats.cs037741192.workers.dev";
+      const visitorStorageKey = "my-ro-tools-visitor-id";
+      const totalViews = document.querySelector("#total-views");
+      const onlineNow = document.querySelector("#online-now");
+      const statsStatus = document.querySelector("#stats-status");
+      const numberFormat = new Intl.NumberFormat("zh-TW");
+
+      function getVisitorId() {
+        let visitorId = localStorage.getItem(visitorStorageKey);
+        if (visitorId) return visitorId;
+
+        if (typeof crypto.randomUUID === "function") {
+          visitorId = crypto.randomUUID();
+        } else {
+          const bytes = crypto.getRandomValues(new Uint8Array(16));
+          visitorId = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+        }
+
+        localStorage.setItem(visitorStorageKey, visitorId);
+        return visitorId;
+      }
+
+      function showUnavailable() {
+        totalViews.textContent = "暫不可用";
+        onlineNow.textContent = "暫不可用";
+        statsStatus.textContent = "統計服務目前無法連線";
+      }
+
+      function showStats(stats) {
+        if (!Number.isSafeInteger(stats.totalViews) || !Number.isSafeInteger(stats.onlineNow)) {
+          throw new Error("Invalid statistics response");
+        }
+
+        totalViews.textContent = numberFormat.format(stats.totalViews);
+        onlineNow.textContent = numberFormat.format(stats.onlineNow);
+        statsStatus.textContent = "匿名估算；同一瀏覽器 30 分鐘內不重複計入瀏覽";
+      }
+
+      async function send(path, visitorId) {
+        const response = await fetch(`${apiBase}${path}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ visitorId }),
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error(`Statistics request failed: ${response.status}`);
+        }
+
+        const stats = await response.json();
+        showStats(stats);
+      }
+
+      async function heartbeat(visitorId) {
+        try {
+          await send("/api/heartbeat", visitorId);
+        } catch {
+          showUnavailable();
+        }
+      }
+
+      async function initialize() {
+        try {
+          const visitorId = getVisitorId();
+          await send("/api/view", visitorId);
+          await heartbeat(visitorId);
+
+          window.setInterval(() => heartbeat(visitorId), 30_000);
+          document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") heartbeat(visitorId);
+          });
+        } catch {
+          showUnavailable();
+        }
+      }
+
+      initialize();
+    })();
   </script>
 </body>
 </html>

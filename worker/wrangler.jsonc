@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-ro-tools-stats",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-15",
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "STATS",
+        "class_name": "StatsDO"
+      }
+    ]
+  },
+  "exports": {
+    "StatsDO": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}
